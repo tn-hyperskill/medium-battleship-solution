@@ -1,0 +1,17 @@
+type: edu
+files:
+  - name: src/battleship/Main.java
+    visible: true
+    learner_created: false
+  - name: test/Tests.java
+    visible: false
+    learner_created: false
+  - name: src/battleship/Board.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/DoublyIndexedTable.java
+    visible: true
+    learner_created: true
+feedback_link: https://hyperskill.org/projects/383/stages/2281/implement#comment
+status: Unchecked
+record: -1

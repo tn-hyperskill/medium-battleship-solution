@@ -1,0 +1,18 @@
+type: choice
+is_multiple_choice: false
+options:
+  - text: '!ExcellentMethod'
+  - text: '@ExcellentMethod'
+  - text: +ExcellentMethod
+  - text: '#ExcellentMethod'
+  - text: '&lt;ExcellentMethod&gt;'
+files:
+  - name: src/Task.java
+    visible: true
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/3781#comment
+status: Solved
+record: -1
+selected_options:
+  - 1
+local_check: false

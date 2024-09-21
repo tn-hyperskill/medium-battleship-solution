@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="false" />
+        <option name="distributionType" value="WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Battleship with Java/task" />
+            <option value="$PROJECT_DIR$/Topics/Adding annotations/Built-in annotations" />
+            <option value="$PROJECT_DIR$/Topics/Adding annotations/Create by" />
+            <option value="$PROJECT_DIR$/Topics/Adding annotations/Creating and invoking methods in Animal and Dog classes" />
+            <option value="$PROJECT_DIR$/Topics/Adding annotations/Deprecated annotation" />
+            <option value="$PROJECT_DIR$/Topics/Adding annotations/How to add annotation to a method" />
+            <option value="$PROJECT_DIR$/Topics/Adding annotations/Lie detector" />
+            <option value="$PROJECT_DIR$/Topics/Adding annotations/Theory" />
+            <option value="$PROJECT_DIR$/util" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
