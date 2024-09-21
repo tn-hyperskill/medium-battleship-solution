@@ -2,6 +2,7 @@ package battleship.util;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
@@ -18,9 +19,11 @@ public final class DoublyIndexedTable<T> {
   public static <T> DoublyIndexedTable<T> fromSeq(final Stream<T> base) {
     return new DoublyIndexedTable(base.toList());
   }
+
   public static <T> DoublyIndexedTable<T> fromSeq(final List<T> base) {
     return new DoublyIndexedTable(List.copyOf(base));
   }
+
   public static <T> DoublyIndexedTable<T> fromSeq(final T[] base) {
     return new DoublyIndexedTable(List.of(base));
   }
@@ -68,7 +71,17 @@ public final class DoublyIndexedTable<T> {
 
   // CRUD-R: Getters
 
-  public int size(){
+  public int size() {
     return this.table.size();
+  }
+
+  // CRUD-R: Streams
+
+  public Stream<T> valStream() {
+    return this.table.stream();
+  }
+
+  public Iterator<T> valIter() {
+    return this.valStream().iterator();
   }
 }

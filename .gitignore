@@ -13,7 +13,7 @@
 *.tmp
 
 # Ignore Gradle caches and logs
-.gradle/
+/.gradle/
 *.gradle/
 
 # Ignore generated files for Maven or Gradle
