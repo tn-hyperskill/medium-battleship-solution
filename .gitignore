@@ -1,0 +1,30 @@
+# Ignore build directory
+/build/
+
+# Ignore OS-specific files
+.DS_Store
+
+# Ignore IDE-specific files (add these if using IntelliJ IDEA or another IDE)
+/.idea/
+*.iml
+
+# Ignore log files and temporary files
+*.log
+*.tmp
+
+# Ignore Gradle caches and logs
+.gradle/
+*.gradle/
+
+# Ignore generated files for Maven or Gradle
+target/
+out/
+
+# Ignore specific Gradle cache files
+.gradle/7.3.3/checksums/
+.gradle/7.3.3/executionHistory/
+.gradle/7.3.3/fileHashes/
+.gradle/buildOutputCleanup/
+
+# Ignore specific IntelliJ IDEA files
+.idea/frameworkLessonHistory/
