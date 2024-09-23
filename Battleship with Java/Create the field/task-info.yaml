@@ -36,6 +36,9 @@ files:
   - name: src/battleship/cell/CellCoordinatesBuilder.java
     visible: true
     learner_created: true
+  - name: src/battleship/ship/ShipModel.java
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/35304#comment
 status: Unchecked
 record: -1
