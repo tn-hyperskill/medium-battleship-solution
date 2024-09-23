@@ -9,13 +9,25 @@ files:
   - name: src/battleship/board/Board.java
     visible: true
     learner_created: true
-  - name: src/battleship/util/BiIndexedTable.java
+  - name: src/battleship/util/ImmutBiIdxTable.java
     visible: true
     learner_created: true
   - name: src/battleship/board/Cell.java
     visible: true
     learner_created: true
   - name: src/battleship/board/CellMatrix.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/board/ProtagoBoard.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/ship/ShipSize.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/ship/Ship.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/board/Coordinate.java
     visible: true
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/35304#comment

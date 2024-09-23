@@ -1,6 +1,6 @@
 package battleship.board;
 
-import battleship.util.BiIndexedTable;
+import battleship.util.ImmutBiIdxTable;
 import java.util.Iterator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -9,15 +9,21 @@ public final class Board {
 
   // Constants
 
-  static final BiIndexedTable<Integer> INT_ENUMERATION = BiIndexedTable
+  /**
+   * <h6></h6>
+   */
+  public static final ImmutBiIdxTable<Integer> ROW_ENUMERATION = ImmutBiIdxTable
       .fromSeq(IntStream.rangeClosed(1, 10).mapToObj(i -> i));
-  static final BiIndexedTable<Character> LETTER_ENUMERATION =
-      BiIndexedTable
+  /**
+   * <h6>Column Enumeration</h6>
+   */
+  public static final ImmutBiIdxTable<Character> COL_ENUMERATION =
+      ImmutBiIdxTable
           .fromSeq(IntStream.range('A', 'J').mapToObj(i -> (char) i));
 
   // Instance fields
 
-  private CellMatrix cellsMtx = new CellMatrix(WIDTH(), HEIGHT());
+  private final CellMatrix cellsMtx = new CellMatrix(WIDTH(), HEIGHT());
 
   // CRUD-C
 
@@ -30,12 +36,12 @@ public final class Board {
 
   // CRUD-R: Getters
 
-  public static int WIDTH() {
-    return INT_ENUMERATION.size();
+  static int WIDTH() {
+    return ROW_ENUMERATION.size();
   }
 
-  public static int HEIGHT() {
-    return LETTER_ENUMERATION.size();
+  static int HEIGHT() {
+    return COL_ENUMERATION.size();
   }
 
   public int width() {
@@ -52,7 +58,7 @@ public final class Board {
   public String toString() {
     var out = new StringBuilder(this.drawnIntEnumeration());
 
-    Iterator<Character> letterIter = LETTER_ENUMERATION.valIter();
+    Iterator<Character> letterIter = COL_ENUMERATION.valIter();
     for (var cellIter = this.cellsMtx.rowWiseIter(); cellIter.hasNext(); ) {
       out.append('\n');
       out.append(letterIter.next() + " ");
@@ -66,7 +72,7 @@ public final class Board {
   }
 
   private String drawnIntEnumeration() {
-    return "  " + INT_ENUMERATION
+    return "  " + ROW_ENUMERATION
         .valStream()
         .map(Object::toString)
         .collect(Collectors.joining(" "));
