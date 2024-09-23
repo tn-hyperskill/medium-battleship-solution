@@ -9,7 +9,7 @@ files:
   - name: src/battleship/board/Board.java
     visible: true
     learner_created: true
-  - name: src/battleship/util/DoublyIndexedTable.java
+  - name: src/battleship/util/BiIndexedTable.java
     visible: true
     learner_created: true
   - name: src/battleship/board/Cell.java
@@ -18,6 +18,6 @@ files:
   - name: src/battleship/board/CellMatrix.java
     visible: true
     learner_created: true
-feedback_link: https://hyperskill.org/projects/383/stages/2281/implement#comment
+feedback_link: https://hyperskill.org/learn/step/35304#comment
 status: Unchecked
 record: -1

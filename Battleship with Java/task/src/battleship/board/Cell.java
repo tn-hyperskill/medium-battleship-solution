@@ -1,7 +1,8 @@
 package battleship.board;
 
 public enum Cell {
-  FOG('~'), MISS('≈'), HIT('*'), SUNK('$');
+  FOG('~'), WATER('≈'), MISS('*'), HIT('@'), SUNK('$');
+
   // Instance fields
   final char symbol;
 

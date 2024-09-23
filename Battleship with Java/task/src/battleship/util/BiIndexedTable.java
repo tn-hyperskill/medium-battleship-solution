@@ -8,7 +8,15 @@ import java.util.Map;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public final class DoublyIndexedTable<T> {
+/**
+ * This is a special case of bidirectional map.
+ * <br><br>
+ * This bi-map is less abstract,
+ * because one of the 2 generic types is known to be {@link Integer}.
+ * Thus, type {@link BiIndexedTable}&lt;T&gt; ≈ {@code Bimap<Integer, T>}.
+ * @param <T>
+ */
+public final class BiIndexedTable<T> {
 
   // Instance fields
   private final List<T> table;
@@ -16,21 +24,21 @@ public final class DoublyIndexedTable<T> {
 
   // CRUD-C: Factory methods
 
-  public static <T> DoublyIndexedTable<T> fromSeq(final Stream<T> base) {
-    return new DoublyIndexedTable(base.toList());
+  public static <T> BiIndexedTable<T> fromSeq(final Stream<T> base) {
+    return new BiIndexedTable(base.toList());
   }
 
-  public static <T> DoublyIndexedTable<T> fromSeq(final List<T> base) {
-    return new DoublyIndexedTable(List.copyOf(base));
+  public static <T> BiIndexedTable<T> fromSeq(final List<T> base) {
+    return new BiIndexedTable(List.copyOf(base));
   }
 
-  public static <T> DoublyIndexedTable<T> fromSeq(final T[] base) {
-    return new DoublyIndexedTable(List.of(base));
+  public static <T> BiIndexedTable<T> fromSeq(final T[] base) {
+    return new BiIndexedTable(List.of(base));
   }
 
   // CRUD-C: Priv. constructors
 
-  private DoublyIndexedTable(final List<T> immutBaseTable) {
+  private BiIndexedTable(final List<T> immutBaseTable) {
     // Declaring pre-field values
     var $secondIndexer = new HashMap<T, Integer>();
     // Initializing pre-field values
@@ -65,7 +73,7 @@ public final class DoublyIndexedTable<T> {
   /**
    * @return index of the provided value
    */
-  public Integer index(T value) {
+  public Integer index(final T value) {
     return this.secondIndexer.get(value);
   }
 

@@ -1,6 +1,6 @@
 package battleship.board;
 
-import battleship.util.DoublyIndexedTable;
+import battleship.util.BiIndexedTable;
 import java.util.Iterator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -9,10 +9,10 @@ public final class Board {
 
   // Constants
 
-  static final DoublyIndexedTable<Integer> INT_ENUMERATION = DoublyIndexedTable
+  static final BiIndexedTable<Integer> INT_ENUMERATION = BiIndexedTable
       .fromSeq(IntStream.rangeClosed(1, 10).mapToObj(i -> i));
-  static final DoublyIndexedTable<Character> LETTER_ENUMERATION =
-      DoublyIndexedTable
+  static final BiIndexedTable<Character> LETTER_ENUMERATION =
+      BiIndexedTable
           .fromSeq(IntStream.range('A', 'J').mapToObj(i -> (char) i));
 
   // Instance fields

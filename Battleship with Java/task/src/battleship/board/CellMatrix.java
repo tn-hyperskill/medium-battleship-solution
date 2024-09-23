@@ -53,12 +53,12 @@ public final class CellMatrix {
 
   // CRUD-R: Fabrication methods for external types
 
-  public Stream<Cell> streamRowWisely() {
+  public Stream<Cell> rowWiseStream() {
     var copiedCells = Arrays.copyOf(this.cells, this.size());
     return Arrays.stream(copiedCells);
   }
 
   public Iterator<Cell> rowWiseIter() {
-    return this.streamRowWisely().iterator();
+    return this.rowWiseStream().iterator();
   }
 }
