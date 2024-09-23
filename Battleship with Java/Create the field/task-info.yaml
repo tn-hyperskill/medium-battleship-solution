@@ -12,10 +12,10 @@ files:
   - name: src/battleship/util/ImmutBiIdxTable.java
     visible: true
     learner_created: true
-  - name: src/battleship/board/Cell.java
+  - name: src/battleship/cell/Cell.java
     visible: true
     learner_created: true
-  - name: src/battleship/board/CellMatrix.java
+  - name: src/battleship/cell/CellMatrix.java
     visible: true
     learner_created: true
   - name: src/battleship/board/ProtagoBoard.java
@@ -27,7 +27,13 @@ files:
   - name: src/battleship/ship/Ship.java
     visible: true
     learner_created: true
-  - name: src/battleship/board/Coordinate.java
+  - name: src/battleship/cell/CellCoordinates.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/Converter.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/cell/CellCoordinatesBuilder.java
     visible: true
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/35304#comment

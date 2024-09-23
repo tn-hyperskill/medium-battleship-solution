@@ -1,5 +1,6 @@
 package battleship.board;
 
+import battleship.cell.CellMatrix;
 import battleship.util.ImmutBiIdxTable;
 import java.util.Iterator;
 import java.util.stream.Collectors;
@@ -12,12 +13,12 @@ public final class Board {
   /**
    * <h6></h6>
    */
-  public static final ImmutBiIdxTable<Integer> ROW_ENUMERATION = ImmutBiIdxTable
+  public static final ImmutBiIdxTable<Integer> ROW_ENUMERATOR = ImmutBiIdxTable
       .fromSeq(IntStream.rangeClosed(1, 10).mapToObj(i -> i));
   /**
    * <h6>Column Enumeration</h6>
    */
-  public static final ImmutBiIdxTable<Character> COL_ENUMERATION =
+  public static final ImmutBiIdxTable<Character> COL_ENUMERATOR =
       ImmutBiIdxTable
           .fromSeq(IntStream.range('A', 'J').mapToObj(i -> (char) i));
 
@@ -36,12 +37,12 @@ public final class Board {
 
   // CRUD-R: Getters
 
-  static int WIDTH() {
-    return ROW_ENUMERATION.size();
+  public static int WIDTH() {
+    return ROW_ENUMERATOR.size();
   }
 
-  static int HEIGHT() {
-    return COL_ENUMERATION.size();
+  public static int HEIGHT() {
+    return COL_ENUMERATOR.size();
   }
 
   public int width() {
@@ -58,7 +59,7 @@ public final class Board {
   public String toString() {
     var out = new StringBuilder(this.drawnIntEnumeration());
 
-    Iterator<Character> letterIter = COL_ENUMERATION.valIter();
+    Iterator<Character> letterIter = COL_ENUMERATOR.valIter();
     for (var cellIter = this.cellsMtx.rowWiseIter(); cellIter.hasNext(); ) {
       out.append('\n');
       out.append(letterIter.next() + " ");
@@ -72,7 +73,7 @@ public final class Board {
   }
 
   private String drawnIntEnumeration() {
-    return "  " + ROW_ENUMERATION
+    return "  " + ROW_ENUMERATOR
         .valStream()
         .map(Object::toString)
         .collect(Collectors.joining(" "));

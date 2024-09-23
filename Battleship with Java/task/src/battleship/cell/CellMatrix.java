@@ -1,4 +1,4 @@
-package battleship.board;
+package battleship.cell;
 
 import java.util.Arrays;
 import java.util.Iterator;

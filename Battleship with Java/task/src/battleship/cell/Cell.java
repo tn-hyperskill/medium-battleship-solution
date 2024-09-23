@@ -1,4 +1,4 @@
-package battleship.board;
+package battleship.cell;
 
 public enum Cell {
   FOG('~'), WATER('≈'), MISS('*'), HIT('@'), SUNK('$');
