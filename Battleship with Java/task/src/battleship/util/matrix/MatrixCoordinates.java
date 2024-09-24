@@ -20,6 +20,7 @@ public class MatrixCoordinates {
     return MatrixCoordinates.builder().row(this.row).column($col).build();
   }
 
+  // CRUD-R: Factory methods
   public static MatrixCoordinatesBuilder builder(){
     return new MatrixCoordinatesBuilder();
   }

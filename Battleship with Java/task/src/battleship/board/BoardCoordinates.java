@@ -10,10 +10,6 @@ public final class BoardCoordinates extends MatrixCoordinates {
     super(row, column);
   }
 
-  public static BoardCoordinates valueOf(MatrixCoordinates source){
-    return builder().row(source.row).column(source.col).build();
-  }
-
   public static BoardCoordinates parse(String humanNotation)
       throws ParseException {
     if (humanNotation.length() != 2 && humanNotation.length() != 3) {
@@ -46,6 +42,7 @@ public final class BoardCoordinates extends MatrixCoordinates {
     return this.toBuilder().column($col).build();
   }
 
+  // CRUD-R: Factory methods
   public static BoardCoordinatesBuilder builder(){
     return new BoardCoordinatesBuilder();
   }
@@ -54,8 +51,15 @@ public final class BoardCoordinates extends MatrixCoordinates {
     return builder().row(this.row).column(this.col);
   }
 
+  // CRUD-R: Properties
+
   @Override public int hashCode() {
     return this.col * Board.HEIGHT() + this.row;
+  }
+
+  public String displayForUser(){
+    return Board.COL_ENUMERATOR.getVal(this.col).toString()
+        + Board.ROW_ENUMERATOR.getVal(this.row);
   }
 
   // CRUD-R: Sexual methods

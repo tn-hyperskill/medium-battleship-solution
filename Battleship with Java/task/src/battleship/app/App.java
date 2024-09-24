@@ -24,7 +24,7 @@ public final class App {
           Length: %s
           Parts: %s
           """, ship.size.volume, ship.hitBoxesStream()
-          .map(Object::toString)
+          .map(BoardCoordinates::displayForUser)
           .collect(Collectors.joining(" ")));
     }catch (Exception e){
       e.printStackTrace();
