@@ -40,17 +40,31 @@ public final class Matrix<T> {
 
   private int calcCellId(MatrixCoordinates coordinates) {
     // Row-wise storage format.
-    return this.width * coordinates.row + coordinates.col;
+    var cellId = this.width * coordinates.row + coordinates.col;
+    if (cellId > this.size()){
+      if (coordinates.row >= this.height){
+        throw new IndexOutOfBoundsException(String.format(
+            "matrix with height=%s doesn't have row with index=%s",
+            this.height(), coordinates.row
+        ));
+      } else if (coordinates.col >= this.width){
+        throw new IndexOutOfBoundsException(String.format(
+            "matrix with width=%s doesn't have column with index=%s",
+            this.width(), coordinates.col
+        ));
+      }
+    }
+    return cellId;
   }
 
   // CRUD-R: Indexers
 
   public T valAt(MatrixCoordinates coordinates) {
-    return this.cells.get(this.calcCellId(coordinates));
+    return this.valWithId(this.calcCellId(coordinates));
   }
 
-  public void setValAt(MatrixCoordinates coordinates, T newVal) {
-    this.cells.set(this.calcCellId(coordinates), newVal);
+  protected T valWithId(int existingId){
+    return this.cells.get(existingId);
   }
 
   // CRUD-R: Fabrication methods for external types
@@ -61,5 +75,15 @@ public final class Matrix<T> {
 
   public Iterator<T> rowWiseIter() {
     return this.rowWiseStream().iterator();
+  }
+
+  // CRUD-U
+
+  public void setValAt(MatrixCoordinates coordinates, T newVal) {
+    this.setValWithId(this.calcCellId(coordinates), newVal);
+  }
+
+  protected void setValWithId(int validId, T newVal){
+    this.cells.set(validId, newVal);
   }
 }

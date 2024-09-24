@@ -1,7 +1,6 @@
 package battleship;
 
 import battleship.app.App;
-import battleship.board.Board;
 
 public class Main {
 

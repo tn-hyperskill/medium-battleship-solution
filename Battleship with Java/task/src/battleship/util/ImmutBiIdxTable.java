@@ -75,17 +75,17 @@ public final class ImmutBiIdxTable<T> {
 
   // CRUD-R: Indexers
 
-  public T findVal(final int index) throws NoSuchElementException{
-    return this.tryFindVal(index).orElseThrow(NoSuchElementException::new);
+  public T getVal(final int index) throws NoSuchElementException{
+    return this.tryGetVal(index).orElseThrow(NoSuchElementException::new);
   }
-  public int findIdx(final T value) throws NoSuchElementException{
-    return this.tryFindIdx(value).orElseThrow(NoSuchElementException::new);
+  public int getIdx(final T value) throws NoSuchElementException{
+    return this.tryGetIdx(value).orElseThrow(NoSuchElementException::new);
   }
 
   /**
    * @return value at the provided index
    */
-  public Optional<T> tryFindVal(final int index) {
+  public Optional<T> tryGetVal(final int index) {
     try {
       return Optional.of(this.table.get(index));
     }catch (IndexOutOfBoundsException e){
@@ -96,7 +96,7 @@ public final class ImmutBiIdxTable<T> {
   /**
    * @return index of the provided value
    */
-  public OptionalInt tryFindIdx(final T value) {
+  public OptionalInt tryGetIdx(final T value) {
     Integer index = this.secondIndexer.get(value);
     return (index == null)? OptionalInt.empty() : OptionalInt.of(index);
   }

@@ -1,94 +1,124 @@
 package battleship.ship;
 
-import battleship.cell.CellCoordinates;
+import battleship.board.BoardCoordinates;
 import battleship.util.Converter;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 public final class AnchoredShip {
+
   // Instance fields
   public final ShipSize size;
   private int hpLeft;
   // Anchors
-  public final CellCoordinates start, finish;
+  public final BoardCoordinates start, finish;
 
   // CRUD-C
 
-  public AnchoredShip(ShipSize size, CellCoordinates start, CellCoordinates finish) {
-    this.size = size;
-    this.hpLeft = size.volume;
+  public AnchoredShip(BoardCoordinates start, BoardCoordinates finish) {
     this.start = start;
     this.finish = finish;
+    var size = ShipSize.fromVolume(this.calcVolume());
+    this.size = size;
+    this.hpLeft = size.volume;
+  }
 
-    if (!this.isThin() || this.calcVolume() != this.volume()){
+  public AnchoredShip(BoardCoordinates start, BoardCoordinates finish,
+      ShipSize expectedSize) {
+    this(start, finish);
+
+    if (!this.isThin()) {
       // Currently fat ships are not tolerated by the game rules.
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException(
+          "Ships that don't have width=1 are invalid.");
+    } else if (!this.size.equals(expectedSize)) {
+      throw new IllegalArgumentException(String.format("""
+          Calculated ships size is different than expected.
+          `calculated`=%s; `expected`=%s
+          """, this.size, expectedSize));
     }
   }
 
   // CRUD-R
 
   // Properties
-  private int calcVolume(){
+  private int calcVolume() {
     var min = this.minCellCords();
     var max = this.maxCellCords();
-    return (max.row - min.row) * (max.col - min.col);
+    return (max.row - min.row + 1) * (max.col - min.col + 1);
   }
-  private boolean isThin(){
-    return this.start.row == this.finish.row || this.start.col == this.finish.col;
+
+  private boolean isThin() {
+    return this.start.row == this.finish.row
+        || this.start.col == this.finish.col;
   }
-  public Stream<CellCoordinates> ctrlZonesStream(){
+
+  public Stream<BoardCoordinates> ctrlZonesStream() {
     return this.hitBoxesStream();
   }
-  public Stream<CellCoordinates> hitBoxesStream(){
+
+  public Stream<BoardCoordinates> hitBoxesStream() {
     return Converter.iteratorToStream(this.hitBoxesIter());
   }
-  public Iterator<CellCoordinates> hitBoxesIter(){
-    final var ship = this;
+
+  public Iterator<BoardCoordinates> hitBoxesIter() {
+    // Temporary variables
+    final var $ship = this;
+    final var $min = $ship.minCellCords();
+    final var $max = $ship.maxCellCords();
 
     return new Iterator<>() {
-      private CellCoordinates headCords = ship.minCellCords();
-      private final CellCoordinates headDest = ship.maxCellCords();
-      private int miniHeadCol = this.headCords.col;
+      // Immutable instance fields
+      private final BoardCoordinates headDest = $max
+          .cloneWithCol($max.col + 1);
+      private final int savedHeadCol = $min.col;
+      // Mutable instance fields
+      private BoardCoordinates headCords = $min;
 
       @Override public boolean hasNext() {
-        return (! this.headCords.equals(this.headDest)) && (ship.volume() > 0);
+        return (!this.headCords.equals(this.headDest));
       }
 
-      @Override public CellCoordinates next() {
-        while (this.hasNext()){
-          this.miniHeadCol++;
-          if (this.miniHeadCol > this.headDest.col){
-            // mini-head do \r
-            this.miniHeadCol = this.headCords.col;
-            // mini-head do \n
-            this.headCords = this.headCords.cloneWithRow(this.headCords.row+1);
+      @Override public BoardCoordinates next() {
+        while (this.hasNext()) {
+          // If we've moved beyond the right margin.
+          if (this.headCords.col >= this.headDest.col) {
+            // head performs "\r\n"
+            this.headCords = this.headCords.toBuilder()
+                .mapRow(row -> row.get() + 1)
+                .column(this.savedHeadCol)
+                .build();
           }
-          return this.headCords.cloneWithCol(this.miniHeadCol);
+          final var ret = this.headCords;
+          this.headCords = this.headCords
+              .cloneWithCol(this.headCords.col + 1);
+          return ret;
         }
         throw new NoSuchElementException();
       }
     };
   }
 
-  private CellCoordinates maxCellCords() {
+  public BoardCoordinates maxCellCords() {
     return this.start.mergeToMaximizeCords(this.finish);
   }
 
-  private CellCoordinates minCellCords() {
+  public BoardCoordinates minCellCords() {
     return this.start.mergeToMinimizeCords(this.finish);
   }
 
   // Getters
 
-  public int hpMax(){
+  public int hpMax() {
     return this.size.volume;
   }
-  public int hpLeft(){
+
+  public int hpLeft() {
     return this.hpLeft;
   }
-  public int volume(){
+
+  public int volume() {
     return this.size.volume;
   }
 }

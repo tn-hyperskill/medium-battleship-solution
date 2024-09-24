@@ -1,7 +1,6 @@
 package battleship.board;
 
 import battleship.cell.Cell;
-import battleship.cell.CellCoordinates;
 import battleship.util.matrix.Matrix;
 import battleship.util.ImmutBiIdxTable;
 import java.util.Iterator;
@@ -22,7 +21,7 @@ public class Board {
    */
   public static final ImmutBiIdxTable<Character> COL_ENUMERATOR =
       ImmutBiIdxTable
-          .fromSeq(IntStream.range('A', 'J').mapToObj(i -> (char) i));
+          .fromSeq(IntStream.range('A', 'A' + 10).mapToObj(i -> (char) i));
 
   // Instance fields
 
@@ -64,10 +63,10 @@ public class Board {
     Iterator<Character> letterIter = COL_ENUMERATOR.valIter();
     for (var cellIter = this.cellsMtx.rowWiseIter(); cellIter.hasNext(); ) {
       out.append('\n');
-      out.append(letterIter.next() + " ");
+      out.append(letterIter.next());
       for (int col = 0; col < this.width(); col++) {
         var cell = cellIter.next();
-        out.append(cell + " ");
+        out.append(" " + cell);
       }
     }
 
@@ -79,10 +78,5 @@ public class Board {
         .valStream()
         .map(Object::toString)
         .collect(Collectors.joining(" "));
-  }
-
-  // Setting indexers
-  protected void setCell(CellCoordinates coordinates, Cell cell){
-    this.cellsMtx.setValAt(coordinates, cell);
   }
 }

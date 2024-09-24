@@ -1,6 +1,5 @@
 package battleship.board;
 
-import battleship.cell.CellCoordinates;
 import battleship.cell.ShipCell;
 import battleship.ship.AnchoredShip;
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ public final class ProtagoBoard extends Board{
 
   // Instance's fields
   private final List<AnchoredShip> aliveShips = new ArrayList();
-  private final Set<CellCoordinates> ctrlZones = new HashSet<>();
+  private final Set<BoardCoordinates> ctrlZones = new HashSet<>();
 
   // CRUD-C
   public static ProtagoBoard empty() {

@@ -35,20 +35,28 @@ public class MatrixCoordinates {
         (this.col & 0b01010101010101010101010101010101);
   }
 
+  // CRUD-R: Displayers
+  @Override
+  public String toString(){
+    return String.format("{col: %s, row: %s}", this.col, this.row);
+  }
+
   // CRUD-R: Sexual methods
 
   public MatrixCoordinates mergeToMinimizeCords(
       MatrixCoordinates lover) {
-    var child = new MatrixCoordinatesBuilder().row(Math.min(this.col, lover.col))
-        .column(Math.min(this.row, lover.row)).build();
-    return child;
+    return new MatrixCoordinatesBuilder()
+        .row(Math.min(this.row, lover.row))
+        .column(Math.min(this.col, lover.col))
+        .build();
   }
 
   public MatrixCoordinates mergeToMaximizeCords(
       MatrixCoordinates lover) {
-    var child = new MatrixCoordinatesBuilder().row(Math.max(this.col, lover.col))
-        .column(Math.max(this.row, lover.row)).build();
-    return child;
+    return new MatrixCoordinatesBuilder()
+        .row(Math.max(this.row, lover.row))
+        .column(Math.max(this.col, lover.col))
+        .build();
   }
 
 }
