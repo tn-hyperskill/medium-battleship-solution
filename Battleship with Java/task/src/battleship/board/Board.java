@@ -1,12 +1,14 @@
 package battleship.board;
 
-import battleship.cell.CellMatrix;
+import battleship.cell.Cell;
+import battleship.cell.CellCoordinates;
+import battleship.util.matrix.Matrix;
 import battleship.util.ImmutBiIdxTable;
 import java.util.Iterator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public final class Board {
+public class Board {
 
   // Constants
 
@@ -24,7 +26,7 @@ public final class Board {
 
   // Instance fields
 
-  private final CellMatrix cellsMtx = new CellMatrix(WIDTH(), HEIGHT());
+  protected final Matrix<Cell> cellsMtx = new Matrix(Cell.fog(), WIDTH(), HEIGHT());
 
   // CRUD-C
 
@@ -32,7 +34,7 @@ public final class Board {
     return new Board();
   }
 
-  protected Board() {
+  Board() {
   }
 
   // CRUD-R: Getters
@@ -77,5 +79,10 @@ public final class Board {
         .valStream()
         .map(Object::toString)
         .collect(Collectors.joining(" "));
+  }
+
+  // Setting indexers
+  protected void setCell(CellCoordinates coordinates, Cell cell){
+    this.cellsMtx.setValAt(coordinates, cell);
   }
 }

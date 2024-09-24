@@ -1,18 +1,14 @@
 package battleship.cell;
 
 import battleship.board.Board;
+import battleship.util.matrix.MatrixCoordinates;
 import java.text.ParseException;
 
-public final class CellCoordinates {
-
-  // Instance fields
-  public final int row, col;
+public final class CellCoordinates extends MatrixCoordinates {
 
   // CRUD-C: Common constructors
-
-  CellCoordinates(int row, int column) {
-    this.row = row;
-    this.col = column;
+  CellCoordinates(int row, int column){
+    super(row, column);
   }
 
   public static CellCoordinates parse(String humanNotation)
@@ -38,21 +34,17 @@ public final class CellCoordinates {
   }
 
   // CRUD-C: Builder (Lite) Pattern
-  public CellCoordinates withRow(int $row) {
+  @Override
+  public CellCoordinates cloneWithRow(int $row) {
     return CellCoordinates.builder().row($row).column(this.col).build();
   }
-  public CellCoordinates withCol(int $col) {
+  @Override
+  public CellCoordinates cloneWithCol(int $col) {
     return CellCoordinates.builder().row(this.row).column($col).build();
   }
 
   public static CellCoordinatesBuilder builder(){
     return new CellCoordinatesBuilder();
-  }
-
-  // CRUD-R: Properties
-  @Override public boolean equals(Object rhs) {
-    return (rhs instanceof CellCoordinates brother) && (this.row == brother.row)
-        && (this.col == brother.col);
   }
 
   @Override public int hashCode() {

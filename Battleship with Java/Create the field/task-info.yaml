@@ -15,7 +15,7 @@ files:
   - name: src/battleship/cell/Cell.java
     visible: true
     learner_created: true
-  - name: src/battleship/cell/CellMatrix.java
+  - name: src/battleship/util/matrix/Matrix.java
     visible: true
     learner_created: true
   - name: src/battleship/board/ProtagoBoard.java
@@ -24,7 +24,7 @@ files:
   - name: src/battleship/ship/ShipSize.java
     visible: true
     learner_created: true
-  - name: src/battleship/ship/Ship.java
+  - name: src/battleship/ship/AnchoredShip.java
     visible: true
     learner_created: true
   - name: src/battleship/cell/CellCoordinates.java
@@ -37,6 +37,18 @@ files:
     visible: true
     learner_created: true
   - name: src/battleship/ship/ShipModel.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/app/App.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/cell/ShipCell.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/matrix/MatrixCoordinates.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/matrix/MatrixCoordinatesBuilder.java
     visible: true
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/35304#comment

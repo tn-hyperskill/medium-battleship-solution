@@ -6,15 +6,16 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
-public final class Ship {
+public final class AnchoredShip {
   // Instance fields
   public final ShipSize size;
   private int hpLeft;
+  // Anchors
   public final CellCoordinates start, finish;
 
   // CRUD-C
 
-  public Ship(ShipSize size, CellCoordinates start, CellCoordinates finish) {
+  public AnchoredShip(ShipSize size, CellCoordinates start, CellCoordinates finish) {
     this.size = size;
     this.hpLeft = size.volume;
     this.start = start;
@@ -62,9 +63,9 @@ public final class Ship {
             // mini-head do \r
             this.miniHeadCol = this.headCords.col;
             // mini-head do \n
-            this.headCords = this.headCords.withRow(this.headCords.row+1);
+            this.headCords = this.headCords.cloneWithRow(this.headCords.row+1);
           }
-          return this.headCords.withCol(this.miniHeadCol);
+          return this.headCords.cloneWithCol(this.miniHeadCol);
         }
         throw new NoSuchElementException();
       }

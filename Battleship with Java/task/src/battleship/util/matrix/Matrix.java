@@ -1,7 +1,6 @@
-package battleship.cell;
+package battleship.util.matrix;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -39,19 +38,19 @@ public final class Matrix<T> {
 
   // CRUD-R: Pure instance methods
 
-  private int calcCellId(int row, int col) {
+  private int calcCellId(MatrixCoordinates coordinates) {
     // Row-wise storage format.
-    return this.width * row + col;
+    return this.width * coordinates.row + coordinates.col;
   }
 
   // CRUD-R: Indexers
 
-  public T valIn(int row, int col) {
-    return this.cells.get(this.calcCellId(row, col));
+  public T valAt(MatrixCoordinates coordinates) {
+    return this.cells.get(this.calcCellId(coordinates));
   }
 
-  public void setValIn(int row, int col, T newVal) {
-    this.cells.set(this.calcCellId(row, col), newVal);
+  public void setValAt(MatrixCoordinates coordinates, T newVal) {
+    this.cells.set(this.calcCellId(coordinates), newVal);
   }
 
   // CRUD-R: Fabrication methods for external types

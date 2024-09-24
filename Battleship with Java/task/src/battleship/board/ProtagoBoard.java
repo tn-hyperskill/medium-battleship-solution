@@ -1,23 +1,20 @@
 package battleship.board;
 
 import battleship.cell.CellCoordinates;
-import battleship.ship.Ship;
+import battleship.cell.ShipCell;
+import battleship.ship.AnchoredShip;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
  * <h6>Protagonist's Board</h6>
  */
-public final class ProtagoBoard {
+public final class ProtagoBoard extends Board{
 
   // Instance's fields
-  private final Board innerBoard = Board.empty();
-  private final List<Ship> aliveShips = new ArrayList();
-  private final Map<CellCoordinates, Ship> hitBoxes = new HashMap<>();
+  private final List<AnchoredShip> aliveShips = new ArrayList();
   private final Set<CellCoordinates> ctrlZones = new HashSet<>();
 
   // CRUD-C
@@ -26,10 +23,11 @@ public final class ProtagoBoard {
   }
 
   protected ProtagoBoard() {
+    super();
   }
 
   // CRUD-U
-  public void placeShip(Ship incomingShip){
+  public void placeShip(AnchoredShip incomingShip){
     // Check if the incomingShip can be placed
     if (incomingShip.hitBoxesStream().anyMatch(this.ctrlZones::contains)){
       throw new IllegalArgumentException(
@@ -38,7 +36,8 @@ public final class ProtagoBoard {
     }
     // Put every incomingShip part or dependency.
     this.aliveShips.add(incomingShip);
-    incomingShip.hitBoxesStream().forEach(hitBox -> this.hitBoxes.put(hitBox, incomingShip));
+    incomingShip.hitBoxesStream().forEach(hitBox -> this.cellsMtx.setValAt(
+        hitBox, new ShipCell(incomingShip)));
     incomingShip.ctrlZonesStream().forEach(ctrlZone -> this.ctrlZones.add(ctrlZone));
   }
 }

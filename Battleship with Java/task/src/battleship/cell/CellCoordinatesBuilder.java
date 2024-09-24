@@ -1,12 +1,14 @@
 package battleship.cell;
 
 import battleship.board.Board;
+import battleship.util.matrix.MatrixCoordinatesBuilder;
 
-public class CellCoordinatesBuilder {
+public class CellCoordinatesBuilder extends MatrixCoordinatesBuilder {
 
   private Integer row = null;
   private Integer column = null;
 
+  @Override
   public CellCoordinatesBuilder row(int row) {
     if (!Board.ROW_ENUMERATOR.hasIdx(row)){
       throw new IllegalArgumentException("nonexistent row index");
@@ -15,6 +17,7 @@ public class CellCoordinatesBuilder {
     return this;
   }
 
+  @Override
   public CellCoordinatesBuilder column(int column) {
     if (!Board.COL_ENUMERATOR.hasIdx(column)){
       throw new IllegalArgumentException("nonexistent column index");
@@ -23,6 +26,7 @@ public class CellCoordinatesBuilder {
     return this;
   }
 
+  @Override
   public CellCoordinates build() {
     try{
       return new CellCoordinates(this.row, this.column);
