@@ -1,19 +1,22 @@
 package battleship.cell;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Stream;
 
-public final class CellMatrix {
+public final class Matrix<T> {
 
   // Instance fields
 
   private final int width, height;
-  private final Cell[] cells;
+  private final List<T> cells;
 
-  public CellMatrix(int width, int height) {
-    var cells = new Cell[width * height];
-    Arrays.fill(cells, Cell.FOG);
+  public Matrix(T defaultVal, int width, int height) {
+    int capacity = width * height;
+    var cells = new ArrayList<>(Collections.nCopies(capacity, defaultVal));
 
     this.width = width;
     this.height = height;
@@ -43,22 +46,21 @@ public final class CellMatrix {
 
   // CRUD-R: Indexers
 
-  private Cell cellIn(int row, int col) {
-    return this.cells[this.calcCellId(row, col)];
+  public T valIn(int row, int col) {
+    return this.cells.get(this.calcCellId(row, col));
   }
 
-  private void setCellIn(int row, int col, Cell newVal) {
-    this.cells[this.calcCellId(row, col)] = newVal;
+  public void setValIn(int row, int col, T newVal) {
+    this.cells.set(this.calcCellId(row, col), newVal);
   }
 
   // CRUD-R: Fabrication methods for external types
 
-  public Stream<Cell> rowWiseStream() {
-    var copiedCells = Arrays.copyOf(this.cells, this.size());
-    return Arrays.stream(copiedCells);
+  public Stream<T> rowWiseStream() {
+    return this.cells.stream();
   }
 
-  public Iterator<Cell> rowWiseIter() {
+  public Iterator<T> rowWiseIter() {
     return this.rowWiseStream().iterator();
   }
 }
