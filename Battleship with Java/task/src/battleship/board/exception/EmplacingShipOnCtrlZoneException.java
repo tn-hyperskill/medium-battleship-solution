@@ -1,5 +1,6 @@
-package battleship.board;
+package battleship.board.exception;
 
+import battleship.board.BoardCoordinates;
 import battleship.ship.Ship;
 
 public final class EmplacingShipOnCtrlZoneException

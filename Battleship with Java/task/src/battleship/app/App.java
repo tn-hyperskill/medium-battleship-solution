@@ -4,7 +4,7 @@ import static battleship.app.DepMgr.DEP_MGR;
 
 import battleship.board.BoardCoordinates;
 import battleship.board.ProtagoBoard;
-import battleship.board.ShipPlacementException;
+import battleship.board.exception.ShipPlacementException;
 import battleship.ship.AnchoredShip;
 import battleship.ship.ShipModel;
 
@@ -16,13 +16,14 @@ public final class App {
     var input = DEP_MGR.input();
 
     for (var shipModel : ShipModel.variantsInPlacingOrd()) {
+      // Base prompt
+      System.out.println(protagoBoard);
+      System.out.printf(
+          "Enter the coordinates of the %s (%s cells):\n",
+          shipModel, shipModel.volume());
       while (true) {
         try {
-          // Prompt
-          System.out.println(protagoBoard);
-          System.out.printf(
-              "Enter the coordinates of the %s (%s cells):\n",
-              shipModel, shipModel.volume());
+          // Pull input
           var coordinates = input.nextLine().split(" ");
           // Input processing
           var start = BoardCoordinates.parse(coordinates[0]);
@@ -31,7 +32,7 @@ public final class App {
           protagoBoard.emplaceShip(ship);
           break;
         } catch (ShipPlacementException e) {
-          System.out.println(e.msgForUser() + " Try again!");
+          System.out.println(e.msgForUser() + " Try again:");
         } catch (Exception e) {
           e.printStackTrace();
         }

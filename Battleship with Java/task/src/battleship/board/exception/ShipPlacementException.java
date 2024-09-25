@@ -1,4 +1,4 @@
-package battleship.board;
+package battleship.board.exception;
 
 public abstract class ShipPlacementException extends RuntimeException{
 

@@ -1,6 +1,7 @@
 package battleship.ship;
 
 import battleship.board.BoardCoordinates;
+import battleship.board.exception.ShipModelInconsistentWithLayoutException;
 import battleship.util.Converter;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -27,11 +28,9 @@ public final class AnchoredShip extends Ship{
     }
     var expectedVolume = this.calcVolume();
     if (this.volume() != expectedVolume) {
-      throw new IllegalArgumentException(String.format("""
-        Provided ship model is inconsistent \
-        with the hit boxes implied by layout.
-        `model.volume()` = %s;  `hit box (count) volume` = %s;
-        """, this.model().volume(), expectedVolume));
+      throw new ShipModelInconsistentWithLayoutException(
+          this.model(), expectedVolume
+      );
     }
   }
 

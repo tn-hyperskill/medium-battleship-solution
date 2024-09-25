@@ -96,13 +96,16 @@ files:
   - name: src/battleship/ship/Ship.java
     visible: true
     learner_created: true
-  - name: src/battleship/board/EmplacingShipOnCtrlZoneException.java
+  - name: src/battleship/board/exception/EmplacingShipOnCtrlZoneException.java
     visible: true
     learner_created: true
-  - name: src/battleship/board/ShipPlacementException.java
+  - name: src/battleship/board/exception/ShipPlacementException.java
     visible: true
     learner_created: true
   - name: src/battleship/cell/CellParser.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/board/exception/ShipModelInconsistentWithLayoutException.java
     visible: true
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/35305#comment
