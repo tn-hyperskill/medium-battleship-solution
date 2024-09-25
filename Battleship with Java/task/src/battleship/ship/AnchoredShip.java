@@ -1,21 +1,22 @@
 package battleship.ship;
 
-import battleship.board.BoardCoordinates;
 import battleship.board.exception.ShipModelInconsistentWithLayoutException;
+import battleship.board.locs.BoardCoordinates;
+import battleship.board.locs.LocsInRectIterator;
 import battleship.util.Converter;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public final class AnchoredShip extends Ship{
+public final class AnchoredShip extends Ship {
 
   // Anchors
   public final BoardCoordinates start, finish;
 
   // CRUD-C
 
-  public AnchoredShip(ShipModel model, BoardCoordinates start, BoardCoordinates finish) {
+  public AnchoredShip(ShipModel model, BoardCoordinates start,
+      BoardCoordinates finish) {
     super(model);
 
     this.start = start;
@@ -36,8 +37,8 @@ public final class AnchoredShip extends Ship{
 
   // CRUD-R: Properties
   private int calcVolume() {
-    var min = this.minCellCords();
-    var max = this.maxCellCords();
+    var min = this.minCoords();
+    var max = this.maxCoords();
     return (max.row - min.row + 1) * (max.col - min.col + 1);
   }
 
@@ -46,21 +47,22 @@ public final class AnchoredShip extends Ship{
         || this.start.col == this.finish.col;
   }
 
-  public BoardCoordinates maxCellCords() {
+  public BoardCoordinates maxCoords() {
     return this.start.mergeToMaximizeCords(this.finish);
   }
 
-  public BoardCoordinates minCellCords() {
+  public BoardCoordinates minCoords() {
     return this.start.mergeToMinimizeCords(this.finish);
   }
 
-  public String displayHitBoxesForDbg(){
+  public String displayHitBoxesForDbg() {
     return String.format("HitBoxes[ %s ]",
         this.hitBoxesStream()
             .map(BoardCoordinates::displayForUser)
             .collect(Collectors.joining(", ")));
   }
-  public String displayHitBoxesMatrixCoordsForDbg(){
+
+  public String displayHitBoxesMatrixCoordsForDbg() {
     return String.format("HitBoxes[ %s ]",
         this.hitBoxesStream()
             .map(BoardCoordinates::toString)
@@ -70,7 +72,12 @@ public final class AnchoredShip extends Ship{
   // Iterators
 
   public Stream<BoardCoordinates> ctrlZonesStream() {
-    return this.hitBoxesStream();
+    return Converter.iteratorToStream(this.ctrlZonesIter());
+  }
+
+  public Iterator<BoardCoordinates> ctrlZonesIter() {
+    return new LocsInRectIterator(this.minCoords().saturating_decrement(),
+        this.maxCoords().saturating_increment());
   }
 
   public Stream<BoardCoordinates> hitBoxesStream() {
@@ -78,41 +85,7 @@ public final class AnchoredShip extends Ship{
   }
 
   public Iterator<BoardCoordinates> hitBoxesIter() {
-    // Temporary variables
-    final var $ship = this;
-    final var $min = $ship.minCellCords();
-    final var $max = $ship.maxCellCords();
-
-    return new Iterator<>() {
-      // Immutable instance fields
-      private final BoardCoordinates headDest = $max
-          .cloneWithCol($max.col + 1);
-      private final int savedHeadCol = $min.col;
-      // Mutable instance fields
-      private BoardCoordinates headCords = $min;
-
-      @Override public boolean hasNext() {
-        return (!this.headCords.equals(this.headDest));
-      }
-
-      @Override public BoardCoordinates next() {
-        while (this.hasNext()) {
-          // If we've moved beyond the right margin.
-          if (this.headCords.col >= this.headDest.col) {
-            // head performs "\r\n"
-            this.headCords = this.headCords.toBuilder()
-                .mapRow(row -> row.get() + 1)
-                .column(this.savedHeadCol)
-                .build();
-          }
-          final var ret = this.headCords;
-          this.headCords = this.headCords
-              .cloneWithCol(this.headCords.col + 1);
-          return ret;
-        }
-        throw new NoSuchElementException();
-      }
-    };
+    return new LocsInRectIterator(this.minCoords(), this.maxCoords());
   }
 
 }

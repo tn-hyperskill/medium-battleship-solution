@@ -13,12 +13,12 @@ public class Board {
   /**
    * <h6>Row Enumeration</h6>
    */
-  static final ImmutBiIdxTable<Integer> COL_ENUMERATOR = ImmutBiIdxTable
+  public static final ImmutBiIdxTable<Integer> COL_ENUMERATOR = ImmutBiIdxTable
       .fromSeq(IntStream.rangeClosed(1, 10).mapToObj(i -> i));
   /**
    * <h6>Column Enumeration</h6>
    */
-  static final ImmutBiIdxTable<Character> ROW_ENUMERATOR =
+  public static final ImmutBiIdxTable<Character> ROW_ENUMERATOR =
       ImmutBiIdxTable
           .fromSeq(IntStream.range('A', 'A' + 10).mapToObj(i -> (char) i));
 

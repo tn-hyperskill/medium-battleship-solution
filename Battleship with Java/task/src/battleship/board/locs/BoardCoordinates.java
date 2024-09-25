@@ -1,12 +1,13 @@
-package battleship.board;
+package battleship.board.locs;
 
+import battleship.board.Board;
 import battleship.util.matrix.MatrixCoordinates;
 import java.text.ParseException;
 
 public final class BoardCoordinates extends MatrixCoordinates {
 
   // CRUD-C: Common constructors
-  BoardCoordinates(int row, int column){
+  BoardCoordinates(int row, int column) {
     super(row, column);
   }
 
@@ -32,22 +33,61 @@ public final class BoardCoordinates extends MatrixCoordinates {
     return new BoardCoordinatesBuilder().row(rowIdx).column(colIdx).build();
   }
 
-  // CRUD-C: Builder (Lite) Pattern
+  // CRUD-C: Builder [Lite] Pattern
   @Override
   public BoardCoordinates cloneWithRow(int $row) {
     return this.toBuilder().row($row).build();
   }
+
   @Override
   public BoardCoordinates cloneWithCol(int $col) {
     return this.toBuilder().column($col).build();
   }
 
+  // CRUD-C: Pure arithmetic operations
+
+  /**
+   * Attempts to decrement both the row and column by 1. If decrementing would
+   * result in a coordinate that is out of the board's valid range, that
+   * coordinate will remain unchanged.
+   * <p>
+   * Note that the row and column are handled independently, meaning that one
+   * coordinate might be decremented while the other is unchanged.
+   *
+   * @return A new {@code BoardCoordinates} with the decremented row and column
+   * values if within board boundaries.
+   */
+  public BoardCoordinates saturating_decrement() {
+    var out = this.toBuilder();
+    out.tryMapColumn(i -> i.get() - 1)  // Decrement column if valid
+        .tryMapRow(i -> i.get() - 1);   // Decrement row if valid
+    return out.build();
+  }
+
+  /**
+   * Attempts to increment both the row and column by 1. If incrementing would
+   * result in a coordinate that is out of the board's valid range, that
+   * coordinate will remain unchanged.
+   * <p>
+   * Note that the row and column are handled independently, meaning that one
+   * coordinate might be incremented while the other is unchanged.
+   *
+   * @return A new {@code BoardCoordinates} with the incremented row and column
+   * values if within board boundaries.
+   */
+  public BoardCoordinates saturating_increment() {
+    var out = this.toBuilder();
+    out.tryMapColumn(i -> i.get() + 1)  // Increment column if valid
+        .tryMapRow(i -> i.get() + 1);   // Increment row if valid
+    return out.build();
+  }
+
   // CRUD-R: Factory methods
-  public static BoardCoordinatesBuilder builder(){
+  public static BoardCoordinatesBuilder builder() {
     return new BoardCoordinatesBuilder();
   }
 
-  public BoardCoordinatesBuilder toBuilder(){
+  public BoardCoordinatesBuilder toBuilder() {
     return builder().row(this.row).column(this.col);
   }
 
@@ -57,7 +97,7 @@ public final class BoardCoordinates extends MatrixCoordinates {
     return this.col * Board.HEIGHT() + this.row;
   }
 
-  public String displayForUser(){
+  public String displayForUser() {
     return Board.ROW_ENUMERATOR.getVal(this.row).toString()
         + Board.COL_ENUMERATOR.getVal(this.col);
   }

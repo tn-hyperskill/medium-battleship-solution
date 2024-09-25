@@ -1,6 +1,8 @@
-package battleship.board;
+package battleship.board.locs;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import battleship.board.Board;
 import org.junit.jupiter.api.*;
 import java.text.ParseException;
 

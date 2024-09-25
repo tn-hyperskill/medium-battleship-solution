@@ -2,7 +2,7 @@ package battleship.app;
 
 import static battleship.app.DepMgr.DEP_MGR;
 
-import battleship.board.BoardCoordinates;
+import battleship.board.locs.BoardCoordinates;
 import battleship.board.ProtagoBoard;
 import battleship.board.exception.ShipPlacementException;
 import battleship.ship.AnchoredShip;

@@ -2,7 +2,7 @@ package battleship.ship;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
-import battleship.board.BoardCoordinates;
+import battleship.board.locs.BoardCoordinates;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
@@ -82,7 +82,7 @@ public class AnchoredShipTest {
     BoardCoordinates start = BoardCoordinates.builder().row(0).column(0).build();
     BoardCoordinates finish = BoardCoordinates.builder().row(2).column(0).build();
     AnchoredShip ship = new AnchoredShip(ShipModel.CRUISER, start, finish);
-    assertEquals(finish, ship.maxCellCords());
+    assertEquals(finish, ship.maxCoords());
   }
 
   @Test
@@ -90,6 +90,6 @@ public class AnchoredShipTest {
     BoardCoordinates start = BoardCoordinates.builder().row(0).column(3).build();
     BoardCoordinates finish = BoardCoordinates.builder().row(0).column(0).build();
     AnchoredShip ship = new AnchoredShip(ShipModel.BATTLESHIP, start, finish);
-    assertEquals(finish, ship.minCellCords());
+    assertEquals(finish, ship.minCoords());
   }
 }

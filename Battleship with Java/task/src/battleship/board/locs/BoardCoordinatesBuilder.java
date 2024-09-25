@@ -1,5 +1,6 @@
-package battleship.board;
+package battleship.board.locs;
 
+import battleship.board.Board;
 import battleship.util.matrix.MatrixCoordinatesBuilder;
 import battleship.util.matrix.exceptions.ColIndexOutOfMatrixBounds;
 import battleship.util.matrix.exceptions.RowIndexOutOfMatrixBounds;
@@ -43,4 +44,23 @@ public class BoardCoordinatesBuilder extends MatrixCoordinatesBuilder {
   public BoardCoordinatesBuilder mapColumn(Function<Optional<Integer>, Integer> mapper){
     return this.column(mapper.apply(this.column()));
   }
+
+  public BoardCoordinatesBuilder tryMapRow(
+      Function<Optional<Integer>, Integer> mapper){
+    try{
+      this.mapRow(mapper);
+    }catch (RowIndexOutOfMatrixBounds $){
+      // Silencing error.
+    }
+    return this;
+  }
+  public BoardCoordinatesBuilder tryMapColumn(Function<Optional<Integer>, Integer> mapper){
+    try{
+      this.mapColumn(mapper);
+    }catch (ColIndexOutOfMatrixBounds $){
+      // Silencing error.
+    }
+    return this;
+  }
+
 }

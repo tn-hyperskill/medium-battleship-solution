@@ -1,6 +1,5 @@
 package battleship.util.matrix;
 
-import battleship.board.BoardCoordinates;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Function;

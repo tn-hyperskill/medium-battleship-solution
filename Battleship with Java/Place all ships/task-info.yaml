@@ -27,7 +27,7 @@ files:
   - name: src/battleship/util/ImmutBiIdxTable.java
     visible: true
     learner_created: true
-  - name: src/battleship/board/BoardCoordinates.java
+  - name: src/battleship/board/locs/BoardCoordinates.java
     visible: true
     learner_created: true
   - name: src/battleship/util/Converter.java
@@ -42,7 +42,7 @@ files:
   - name: src/battleship/util/matrix/exceptions/RowIndexOutOfMatrixBounds.java
     visible: true
     learner_created: true
-  - name: src/battleship/board/BoardCoordinatesBuilder.java
+  - name: src/battleship/board/locs/BoardCoordinatesBuilder.java
     visible: true
     learner_created: true
   - name: src/battleship/ship/ShipModel.java
@@ -72,10 +72,10 @@ files:
   - name: src/battleship/ship/ShipSizeTest.java
     visible: true
     learner_created: true
-  - name: src/battleship/board/BoardCoordinatesTest.java
+  - name: src/battleship/board/locs/BoardCoordinatesTest.java
     visible: true
     learner_created: true
-  - name: src/battleship/board/BoardCoordinatesBuilderTest.java
+  - name: src/battleship/board/locs/BoardCoordinatesBuilderTest.java
     visible: true
     learner_created: true
   - name: src/battleship/util/matrix/MatrixCoordinatesBuilderTest.java
@@ -106,6 +106,9 @@ files:
     visible: true
     learner_created: true
   - name: src/battleship/board/exception/ShipModelInconsistentWithLayoutException.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/board/locs/LocsInRectIterator.java
     visible: true
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/35305#comment

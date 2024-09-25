@@ -1,6 +1,7 @@
 package battleship.board;
 
 import battleship.board.exception.EmplacingShipOnCtrlZoneException;
+import battleship.board.locs.BoardCoordinates;
 import battleship.cell.ShipCell;
 import battleship.ship.AnchoredShip;
 import java.util.ArrayList;
