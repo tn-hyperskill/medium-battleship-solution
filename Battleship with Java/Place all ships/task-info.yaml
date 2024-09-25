@@ -102,6 +102,9 @@ files:
   - name: src/battleship/board/ShipPlacementException.java
     visible: true
     learner_created: true
+  - name: src/battleship/cell/CellParser.java
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/35305#comment
 status: Unchecked
 record: 2

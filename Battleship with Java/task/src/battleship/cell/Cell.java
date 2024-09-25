@@ -1,10 +1,11 @@
 package battleship.cell;
 
-public abstract class Cell {
+public abstract class Cell extends CellParser {
   // Instance field
   public final char symbol;
 
-  // Fabrication methods for singletons
+  // CRUD-C: Fabrication methods for subclass singletons
+
   public static FogCell fog() {
     return FogCell.INSTANCE;
   }
@@ -25,9 +26,15 @@ public abstract class Cell {
     return WaterCell.INSTANCE;
   }
 
-  // Protected constructor to be used by subclasses
+  // CRUD-C
+
   protected Cell(char symbol) {
+    super();
     this.symbol = symbol;
+  }
+
+  public static Cell[] variants(){
+    return new Cell[]{fog(), hit(), miss(), sunk(), water(), ShipCell.UNOWNED};
   }
 
   // CRUD-R
@@ -53,7 +60,7 @@ final class HitCell extends Cell {
 
   // Private constructor to prevent external instantiation
   private HitCell() {
-    super('@');
+    super('X');
   }
 }
 
@@ -63,7 +70,7 @@ final class MissCell extends Cell {
 
   // Private constructor to prevent external instantiation
   private MissCell() {
-    super('*');
+    super('M');
   }
 }
 
@@ -73,7 +80,7 @@ final class SunkCell extends Cell {
 
   // Private constructor to prevent external instantiation
   private SunkCell() {
-    super('$');
+    super('X');
   }
 }
 

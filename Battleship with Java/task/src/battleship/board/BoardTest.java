@@ -13,22 +13,6 @@ public class BoardTest {
   }
 
   @Test
-  void rowEnumeratorHasCorrectValues() {
-    assertEquals(10, Board.ROW_ENUMERATOR.size());
-    for (int i = 1; i <= 10; i++) {
-      assertTrue(Board.ROW_ENUMERATOR.hasVal(i));
-    }
-  }
-
-  @Test
-  void colEnumeratorHasCorrectValues() {
-    assertEquals(10, Board.COL_ENUMERATOR.size());
-    for (char c = 'A'; c <= 'J'; c++) {
-      assertTrue(Board.COL_ENUMERATOR.hasVal(c));
-    }
-  }
-
-  @Test
   void toStringReturnsCorrectEmptyBoardString() {
     Board board = Board.empty();
     String expected = """

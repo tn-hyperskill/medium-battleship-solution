@@ -1,6 +1,7 @@
 package battleship.util.matrix;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -13,13 +14,26 @@ public final class Matrix<T> {
   private final int width, height;
   private final List<T> cells;
 
-  public Matrix(T defaultVal, int width, int height) {
-    int capacity = width * height;
-    var cells = new ArrayList<>(Collections.nCopies(capacity, defaultVal));
+  public Matrix(T defaultVal, int height, int width) {
+    this(
+        new ArrayList<T>(Collections.nCopies(width * height, defaultVal)),
+        height, width
+    );
+  }
 
+  /**
+   * Constructor good for unit tests.
+   */
+  Matrix(T[] base, int height, int width) {
+    this(Arrays.asList(base), height, width);
+
+    assert base.length == width * height;
+  }
+
+  private Matrix(List<T> cells, int height, int width) {
+    this.cells = cells;
     this.width = width;
     this.height = height;
-    this.cells = cells;
   }
 
   // CRUD-R: Getters
@@ -41,13 +55,13 @@ public final class Matrix<T> {
   private int calcCellId(MatrixCoordinates coordinates) {
     // Row-wise storage format.
     var cellId = this.width * coordinates.row + coordinates.col;
-    if (cellId > this.size()){
-      if (coordinates.row >= this.height){
+    if (cellId > this.size()) {
+      if (coordinates.row >= this.height) {
         throw new IndexOutOfBoundsException(String.format(
             "matrix with height=%s doesn't have row with index=%s",
             this.height(), coordinates.row
         ));
-      } else if (coordinates.col >= this.width){
+      } else if (coordinates.col >= this.width) {
         throw new IndexOutOfBoundsException(String.format(
             "matrix with width=%s doesn't have column with index=%s",
             this.width(), coordinates.col
@@ -63,7 +77,7 @@ public final class Matrix<T> {
     return this.valWithId(this.calcCellId(coordinates));
   }
 
-  protected T valWithId(int existingId){
+  protected T valWithId(int existingId) {
     return this.cells.get(existingId);
   }
 
@@ -83,7 +97,7 @@ public final class Matrix<T> {
     this.setValWithId(this.calcCellId(coordinates), newVal);
   }
 
-  protected void setValWithId(int validId, T newVal){
+  protected void setValWithId(int validId, T newVal) {
     this.cells.set(validId, newVal);
   }
 }

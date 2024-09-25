@@ -1,8 +1,8 @@
 package battleship.board;
 
 import battleship.cell.Cell;
-import battleship.util.matrix.Matrix;
 import battleship.util.ImmutBiIdxTable;
+import battleship.util.matrix.Matrix;
 import java.util.Iterator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -10,22 +10,21 @@ import java.util.stream.IntStream;
 public class Board {
 
   // Constants
-
   /**
-   * <h6></h6>
+   * <h6>Row Enumeration</h6>
    */
-  public static final ImmutBiIdxTable<Integer> ROW_ENUMERATOR = ImmutBiIdxTable
+  static final ImmutBiIdxTable<Integer> COL_ENUMERATOR = ImmutBiIdxTable
       .fromSeq(IntStream.rangeClosed(1, 10).mapToObj(i -> i));
   /**
    * <h6>Column Enumeration</h6>
    */
-  public static final ImmutBiIdxTable<Character> COL_ENUMERATOR =
+  static final ImmutBiIdxTable<Character> ROW_ENUMERATOR =
       ImmutBiIdxTable
           .fromSeq(IntStream.range('A', 'A' + 10).mapToObj(i -> (char) i));
 
   // Instance fields
 
-  protected final Matrix<Cell> cellsMtx = new Matrix(Cell.fog(), WIDTH(), HEIGHT());
+  protected final Matrix<Cell> cellsMtx;
 
   // CRUD-C
 
@@ -33,17 +32,24 @@ public class Board {
     return new Board();
   }
 
-  Board() {
+  protected Board() {
+    this(new Matrix(Cell.fog(), HEIGHT(), WIDTH()));
+  }
+
+  protected Board(Matrix<Cell> cellsMtx) {
+    this.cellsMtx = cellsMtx;
+    assert cellsMtx.width() == WIDTH()
+        && cellsMtx.height() == HEIGHT();
   }
 
   // CRUD-R: Getters
 
   public static int WIDTH() {
-    return ROW_ENUMERATOR.size();
+    return COL_ENUMERATOR.size();
   }
 
   public static int HEIGHT() {
-    return COL_ENUMERATOR.size();
+    return ROW_ENUMERATOR.size();
   }
 
   public int width() {
@@ -60,7 +66,7 @@ public class Board {
   public String toString() {
     var out = new StringBuilder(this.drawnIntEnumeration());
 
-    Iterator<Character> letterIter = COL_ENUMERATOR.valIter();
+    Iterator<Character> letterIter = ROW_ENUMERATOR.valIter();
     for (var cellIter = this.cellsMtx.rowWiseIter(); cellIter.hasNext(); ) {
       out.append('\n');
       out.append(letterIter.next());
@@ -74,7 +80,7 @@ public class Board {
   }
 
   private String drawnIntEnumeration() {
-    return "  " + ROW_ENUMERATOR
+    return "  " + COL_ENUMERATOR
         .valStream()
         .map(Object::toString)
         .collect(Collectors.joining(" "));

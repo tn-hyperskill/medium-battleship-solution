@@ -16,14 +16,14 @@ public final class BoardCoordinates extends MatrixCoordinates {
       throw new IllegalArgumentException("string length should equal 2 or 3");
     }
 
-    final int colIdx, rowIdx;
+    final int rowIdx, colIdx;
     try {
-      colIdx = Board.COL_ENUMERATOR.getIdx(humanNotation.charAt(0));
+      rowIdx = Board.ROW_ENUMERATOR.getIdx(humanNotation.charAt(0));
     } catch (Exception e) {
       throw (ParseException) new ParseException("", 0).initCause(e);
     }
     try {
-      rowIdx = Board.ROW_ENUMERATOR.getIdx(
+      colIdx = Board.COL_ENUMERATOR.getIdx(
           Integer.parseInt(humanNotation.substring(1)));
     } catch (Exception e) {
       throw (ParseException) new ParseException("", 1).initCause(e);
@@ -58,8 +58,8 @@ public final class BoardCoordinates extends MatrixCoordinates {
   }
 
   public String displayForUser(){
-    return Board.COL_ENUMERATOR.getVal(this.col).toString()
-        + Board.ROW_ENUMERATOR.getVal(this.row);
+    return Board.ROW_ENUMERATOR.getVal(this.row).toString()
+        + Board.COL_ENUMERATOR.getVal(this.col);
   }
 
   // CRUD-R: Sexual methods

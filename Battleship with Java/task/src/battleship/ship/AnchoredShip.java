@@ -4,6 +4,7 @@ import battleship.board.BoardCoordinates;
 import battleship.util.Converter;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public final class AnchoredShip extends Ship{
@@ -45,6 +46,29 @@ public final class AnchoredShip extends Ship{
     return this.start.row == this.finish.row
         || this.start.col == this.finish.col;
   }
+
+  public BoardCoordinates maxCellCords() {
+    return this.start.mergeToMaximizeCords(this.finish);
+  }
+
+  public BoardCoordinates minCellCords() {
+    return this.start.mergeToMinimizeCords(this.finish);
+  }
+
+  public String displayHitBoxesForDbg(){
+    return String.format("HitBoxes[ %s ]",
+        this.hitBoxesStream()
+            .map(BoardCoordinates::displayForUser)
+            .collect(Collectors.joining(", ")));
+  }
+  public String displayHitBoxesMatrixCoordsForDbg(){
+    return String.format("HitBoxes[ %s ]",
+        this.hitBoxesStream()
+            .map(BoardCoordinates::toString)
+            .collect(Collectors.joining(", ")));
+  }
+
+  // Iterators
 
   public Stream<BoardCoordinates> ctrlZonesStream() {
     return this.hitBoxesStream();
@@ -91,14 +115,5 @@ public final class AnchoredShip extends Ship{
       }
     };
   }
-
-  public BoardCoordinates maxCellCords() {
-    return this.start.mergeToMaximizeCords(this.finish);
-  }
-
-  public BoardCoordinates minCellCords() {
-    return this.start.mergeToMinimizeCords(this.finish);
-  }
-
 
 }
