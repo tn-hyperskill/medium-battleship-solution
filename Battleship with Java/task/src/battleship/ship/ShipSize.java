@@ -4,7 +4,7 @@ public enum ShipSize {
   TINY(2), MEDIUM(3), BIG(4), LARGE(5);
 
   // Instance fields
-  public final int volume;
+  private final int volume;
 
   // CRUD-C
 
@@ -39,5 +39,11 @@ public enum ShipSize {
 
   private String capitalizedName() {
     return this.name().charAt(0) + this.name().substring(1).toLowerCase();
+  }
+
+  // CRUD-R: Getters
+
+  public int volume() {
+    return this.volume;
   }
 }

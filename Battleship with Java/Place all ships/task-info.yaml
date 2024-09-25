@@ -6,6 +6,99 @@ files:
   - name: test/Tests.java
     visible: false
     learner_created: false
+  - name: src/battleship/board/ProtagoBoard.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/app/DepMgr.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/cell/Cell.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/matrix/MatrixCoordinates.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/matrix/MatrixCoordinatesBuilder.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/ship/AnchoredShip.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/ImmutBiIdxTable.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/board/BoardCoordinates.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/Converter.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/board/Board.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/cell/ShipCell.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/matrix/exceptions/RowIndexOutOfMatrixBounds.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/board/BoardCoordinatesBuilder.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/ship/ShipModel.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/app/App.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/ship/ShipSize.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/matrix/exceptions/ColIndexOutOfMatrixBounds.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/matrix/Matrix.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/IndexOutOfFooBounds.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/matrix/exceptions/IndexOutOfMatrixBounds.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/board/BoardTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/ship/ShipSizeTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/board/BoardCoordinatesTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/board/BoardCoordinatesBuilderTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/matrix/MatrixCoordinatesBuilderTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/ImmutBiIdxTableTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/matrix/MatrixCoordinatesTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/matrix/MatrixTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/ship/AnchoredShipTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/ship/Ship.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/board/EmplacingShipOnCtrlZoneException.java
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/35305#comment
 status: Unchecked
-record: -1
+record: 2

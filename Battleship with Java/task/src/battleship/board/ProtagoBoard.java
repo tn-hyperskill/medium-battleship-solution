@@ -26,7 +26,7 @@ public final class ProtagoBoard extends Board{
   }
 
   // CRUD-U
-  public void placeShip(AnchoredShip incomingShip){
+  public void emplaceShip(AnchoredShip incomingShip){
     // Check if the incomingShip can be placed
     if (incomingShip.hitBoxesStream().anyMatch(this.ctrlZones::contains)){
       throw new IllegalArgumentException(

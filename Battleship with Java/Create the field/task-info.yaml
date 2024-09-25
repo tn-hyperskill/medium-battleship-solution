@@ -54,33 +54,6 @@ files:
   - name: src/battleship/app/DepMgr.java
     visible: true
     learner_created: true
-  - name: src/battleship/util/matrix/MatrixCoordinatesTest.java
-    visible: true
-    learner_created: true
-  - name: src/battleship/util/matrix/MatrixCoordinatesBuilderTest.java
-    visible: true
-    learner_created: true
-  - name: src/battleship/util/matrix/MatrixTest.java
-    visible: true
-    learner_created: true
-  - name: src/battleship/util/ImmutBiIdxTableTest.java
-    visible: true
-    learner_created: true
-  - name: src/battleship/board/BoardTest.java
-    visible: true
-    learner_created: true
-  - name: src/battleship/board/BoardCoordinatesTest.java
-    visible: true
-    learner_created: true
-  - name: src/battleship/board/BoardCoordinatesBuilderTest.java
-    visible: true
-    learner_created: true
-  - name: src/battleship/ship/AnchoredShipTest.java
-    visible: true
-    learner_created: true
-  - name: src/battleship/ship/ShipSizeTest.java
-    visible: true
-    learner_created: true
   - name: src/battleship/util/IndexOutOfFooBounds.java
     visible: true
     learner_created: true
@@ -93,9 +66,36 @@ files:
   - name: src/battleship/util/matrix/exceptions/RowIndexOutOfMatrixBounds.java
     visible: true
     learner_created: true
+  - name: src/battleship/board/BoardTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/board/BoardCoordinatesBuilderTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/board/BoardCoordinatesTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/ImmutBiIdxTableTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/matrix/MatrixCoordinatesBuilderTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/matrix/MatrixTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/matrix/MatrixCoordinatesTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/ship/AnchoredShipTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/ship/ShipSizeTest.java
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/35304#comment
-status: Failed
+status: Solved
 feedback:
-  message: Compilation Failed
-  time: "Wed, 25 Sep 2024 08:47:22 UTC"
-record: -1
+  message: Congratulations!
+  time: "Wed, 25 Sep 2024 08:59:28 UTC"
+record: 1

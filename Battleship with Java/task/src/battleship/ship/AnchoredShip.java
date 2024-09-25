@@ -6,43 +6,35 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
-public final class AnchoredShip {
+public final class AnchoredShip extends Ship{
 
-  // Instance fields
-  public final ShipSize size;
-  private int hpLeft;
   // Anchors
   public final BoardCoordinates start, finish;
 
   // CRUD-C
 
-  public AnchoredShip(BoardCoordinates start, BoardCoordinates finish) {
+  public AnchoredShip(ShipModel model, BoardCoordinates start, BoardCoordinates finish) {
+    super(model);
+
     this.start = start;
     this.finish = finish;
-    var size = ShipSize.fromVolume(this.calcVolume());
-    this.size = size;
-    this.hpLeft = size.volume;
-  }
-
-  public AnchoredShip(BoardCoordinates start, BoardCoordinates finish,
-      ShipSize expectedSize) {
-    this(start, finish);
-
+    // Integrity checks
     if (!this.isThin()) {
       // Currently fat ships are not tolerated by the game rules.
       throw new IllegalArgumentException(
           "Ships that don't have width=1 are invalid.");
-    } else if (!this.size.equals(expectedSize)) {
+    }
+    var expectedVolume = this.calcVolume();
+    if (this.volume() != expectedVolume) {
       throw new IllegalArgumentException(String.format("""
-          Calculated ships size is different than expected.
-          `calculated`=%s; `expected`=%s
-          """, this.size, expectedSize));
+        Provided ship model is inconsistent \
+        with the hit boxes implied by layout.
+        `model.volume()` = %s;  `hit box (count) volume` = %s;
+        """, this.model().volume(), expectedVolume));
     }
   }
 
-  // CRUD-R
-
-  // Properties
+  // CRUD-R: Properties
   private int calcVolume() {
     var min = this.minCellCords();
     var max = this.maxCellCords();
@@ -108,17 +100,5 @@ public final class AnchoredShip {
     return this.start.mergeToMinimizeCords(this.finish);
   }
 
-  // Getters
 
-  public int hpMax() {
-    return this.size.volume;
-  }
-
-  public int hpLeft() {
-    return this.hpLeft;
-  }
-
-  public int volume() {
-    return this.size.volume;
-  }
 }

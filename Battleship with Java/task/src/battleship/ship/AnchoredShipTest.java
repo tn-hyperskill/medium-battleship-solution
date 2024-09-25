@@ -3,7 +3,6 @@ package battleship.ship;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 import battleship.board.BoardCoordinates;
-import battleship.util.Converter;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
@@ -11,11 +10,11 @@ import java.util.stream.Stream;
 public class AnchoredShipTest {
 
   @Test
-  void constructorCreatesShipWithCorrectSizeAndHp() {
+  void constructorCreatesCorrectShip() {
     BoardCoordinates start = BoardCoordinates.builder().row(0).column(0).build();
     BoardCoordinates finish = BoardCoordinates.builder().row(0).column(3).build();
-    AnchoredShip ship = new AnchoredShip(start, finish);
-    assertEquals(ShipSize.fromVolume(4), ship.size);
+    AnchoredShip ship = new AnchoredShip(ShipModel.BATTLESHIP, start, finish);
+    assertEquals(ShipModel.BATTLESHIP, ship.model());
     assertEquals(4, ship.hpLeft());
   }
 
@@ -23,23 +22,23 @@ public class AnchoredShipTest {
   void constructorThrowsExceptionForFatShip() {
     BoardCoordinates start = BoardCoordinates.builder().row(0).column(0).build();
     BoardCoordinates finish = BoardCoordinates.builder().row(3).column(3).build();
-    assertThrows(IllegalArgumentException.class, () -> new AnchoredShip(start, finish));
+    assertThrows(IllegalArgumentException.class, () -> new AnchoredShip(ShipModel.BATTLESHIP, start, finish));
   }
 
   @Test
   void constructorWithExpectedSizeCreatesShipCorrectly() {
     BoardCoordinates start = BoardCoordinates.builder().row(0).column(0).build();
     BoardCoordinates finish = BoardCoordinates.builder().row(0).column(2).build();
-    ShipSize expectedSize = ShipSize.fromVolume(3);
-    AnchoredShip ship = new AnchoredShip(start, finish, expectedSize);
-    assertEquals(expectedSize, ship.size);
+    var expectedModel = ShipModel.CRUISER;
+    var ship = new AnchoredShip(ShipModel.CRUISER, start, finish);
+    assertEquals(expectedModel, ship.model());
   }
 
   @Test
   void calcVolumeReturnsCorrectValue() {
     BoardCoordinates start = BoardCoordinates.builder().row(0).column(0).build();
     BoardCoordinates finish = BoardCoordinates.builder().row(0).column(3).build();
-    AnchoredShip ship = new AnchoredShip(start, finish);
+    AnchoredShip ship = new AnchoredShip(ShipModel.BATTLESHIP, start, finish);
     assertEquals(4, ship.volume());
   }
 
@@ -47,7 +46,7 @@ public class AnchoredShipTest {
   void hitBoxesStreamReturnsCorrectStream() {
     BoardCoordinates start = BoardCoordinates.builder().row(0).column(0).build();
     BoardCoordinates finish = BoardCoordinates.builder().row(0).column(2).build();
-    AnchoredShip ship = new AnchoredShip(start, finish);
+    AnchoredShip ship = new AnchoredShip(ShipModel.SUBMARINE, start, finish);
     Stream<BoardCoordinates> hitBoxes = ship.hitBoxesStream();
     assertEquals(3, hitBoxes.count());
   }
@@ -56,7 +55,7 @@ public class AnchoredShipTest {
   void hitBoxesIterReturnsCorrectIterator() {
     BoardCoordinates start = BoardCoordinates.builder().row(0).column(0).build();
     BoardCoordinates finish = BoardCoordinates.builder().row(0).column(2).build();
-    AnchoredShip ship = new AnchoredShip(start, finish);
+    AnchoredShip ship = new AnchoredShip(ShipModel.SUBMARINE, start, finish);
     Iterator<BoardCoordinates> iter = ship.hitBoxesIter();
 
     assertTrue(iter.hasNext());
@@ -70,7 +69,7 @@ public class AnchoredShipTest {
   void hitBoxesIterThrowsExceptionWhenNoMoreElements() {
     BoardCoordinates start = BoardCoordinates.builder().row(0).column(0).build();
     BoardCoordinates finish = BoardCoordinates.builder().row(0).column(1).build();
-    AnchoredShip ship = new AnchoredShip(start, finish);
+    AnchoredShip ship = new AnchoredShip(ShipModel.DESTROYER, start, finish);
     Iterator<BoardCoordinates> iter = ship.hitBoxesIter();
 
     iter.next(); // first element
@@ -82,7 +81,7 @@ public class AnchoredShipTest {
   void maxCellCordsReturnsMaxCoordinates() {
     BoardCoordinates start = BoardCoordinates.builder().row(0).column(0).build();
     BoardCoordinates finish = BoardCoordinates.builder().row(2).column(0).build();
-    AnchoredShip ship = new AnchoredShip(start, finish);
+    AnchoredShip ship = new AnchoredShip(ShipModel.CRUISER, start, finish);
     assertEquals(finish, ship.maxCellCords());
   }
 
@@ -90,7 +89,7 @@ public class AnchoredShipTest {
   void minCellCordsReturnsMinCoordinates() {
     BoardCoordinates start = BoardCoordinates.builder().row(0).column(3).build();
     BoardCoordinates finish = BoardCoordinates.builder().row(0).column(0).build();
-    AnchoredShip ship = new AnchoredShip(start, finish);
+    AnchoredShip ship = new AnchoredShip(ShipModel.BATTLESHIP, start, finish);
     assertEquals(finish, ship.minCellCords());
   }
 }
