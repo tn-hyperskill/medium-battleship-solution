@@ -3,7 +3,9 @@ package battleship.app;
 import static battleship.app.DepMgr.DEP_MGR;
 
 import battleship.board.BoardCoordinates;
+import battleship.board.EmplacingShipOnCtrlZoneException;
 import battleship.board.ProtagoBoard;
+import battleship.board.ShipPlacementException;
 import battleship.ship.AnchoredShip;
 import battleship.ship.ShipModel;
 
@@ -24,11 +26,15 @@ public final class App {
         var finish = BoardCoordinates.parse(coordinates[1]);
         var ship = new AnchoredShip(shipModel, start, finish);
         protagoBoard.emplaceShip(ship);
+      }catch (ShipPlacementException e){
+        System.out.println(e.msgForUser() + " Try again!");
       }catch (Exception e){
         e.printStackTrace();
-        System.out.println("Error!");
       }
     }
     System.out.println(protagoBoard);
+  }
+  private static void printShipConstructionErr(){
+
   }
 }
