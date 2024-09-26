@@ -1,15 +1,17 @@
 package battleship.cell;
 
-import battleship.ship.AnchoredShip;
+import battleship.ship.Ship;
+import battleship.ship.shot.ShotResult;
 
 public final class ShipCell extends Cell {
   public static final char SYMBOL = 'O';
   public static final ShipCell UNOWNED = new ShipCell();
 
-  public final AnchoredShip owner;
+  public final Ship owner;
 
-  // Constructor with owner as parameter
-  public ShipCell(final AnchoredShip owner) {
+  // CRUD-C
+
+  public ShipCell(final Ship owner) {
     super(SYMBOL);
     if (owner == null){
       throw new IllegalArgumentException("`owner` should not be `null`");
@@ -20,5 +22,12 @@ public final class ShipCell extends Cell {
   private ShipCell(){
     super(SYMBOL);
     this.owner = null;
+  }
+
+  // CRUD-R
+
+  @Override
+  public ShotResult takeShot(){
+    return this.owner.takeShot();
   }
 }

@@ -6,7 +6,7 @@ import battleship.board.locs.BoardCoordinates;
 import battleship.board.ProtagoBoard;
 import battleship.board.exception.ShipPlacementException;
 import battleship.ship.AnchoredShip;
-import battleship.ship.ShipModel;
+import battleship.ship.model.ShipModel;
 
 public final class App {
 
@@ -39,6 +39,12 @@ public final class App {
       }
     }
     System.out.println(protagoBoard);
+
+    System.out.println("The game starts!");
+    for (;;){
+      System.out.println(protagoBoard);
+      System.out.println("Take a shot!");
+    }
   }
 
   private static void printShipConstructionErr() {

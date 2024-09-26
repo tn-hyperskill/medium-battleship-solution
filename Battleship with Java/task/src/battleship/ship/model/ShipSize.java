@@ -1,4 +1,4 @@
-package battleship.ship;
+package battleship.ship.model;
 
 public enum ShipSize {
   TINY(2), MEDIUM(3), BIG(4), LARGE(5);

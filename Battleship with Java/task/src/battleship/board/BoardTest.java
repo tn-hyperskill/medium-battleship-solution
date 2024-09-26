@@ -6,15 +6,15 @@ import org.junit.jupiter.api.*;
 public class BoardTest {
 
   @Test
-  void emptyBoardHasCorrectWidthAndHeight() {
-    Board board = Board.empty();
+  void foggyBoardHasCorrectWidthAndHeight() {
+    Board board = Board.foggy();
     assertEquals(10, board.width());
     assertEquals(10, board.height());
   }
 
   @Test
-  void toStringReturnsCorrectEmptyBoardString() {
-    Board board = Board.empty();
+  void toStringReturnsCorrectFoggyBoardString() {
+    Board board = Board.foggy();
     String expected = """
           1 2 3 4 5 6 7 8 9 10
         A ~ ~ ~ ~ ~ ~ ~ ~ ~ ~

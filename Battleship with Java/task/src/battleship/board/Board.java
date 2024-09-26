@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Board {
+public abstract class Board {
 
   // Constants
   /**
@@ -28,12 +28,15 @@ public class Board {
 
   // CRUD-C
 
-  public static Board empty() {
-    return new Board();
+  /**
+   * @return construct an empty (foggy) board for unit tests.
+   */
+  static Board foggy() {
+    return new Board(Cell.fog()){};
   }
 
-  protected Board() {
-    this(new Matrix(Cell.fog(), HEIGHT(), WIDTH()));
+  protected Board(Cell defaultCell){
+    this(new Matrix(defaultCell, HEIGHT(), WIDTH()));
   }
 
   protected Board(Matrix<Cell> cellsMtx) {

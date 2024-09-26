@@ -1,6 +1,8 @@
 package battleship.ship;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import battleship.ship.model.ShipModel;
 import org.junit.jupiter.api.*;
 import battleship.board.locs.BoardCoordinates;
 import java.util.Iterator;

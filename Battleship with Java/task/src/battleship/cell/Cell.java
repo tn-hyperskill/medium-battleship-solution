@@ -1,5 +1,7 @@
 package battleship.cell;
 
+import battleship.ship.shot.ShotResult;
+
 public abstract class Cell extends CellParser {
   // Instance field
   public final char symbol;
@@ -18,8 +20,8 @@ public abstract class Cell extends CellParser {
     return MissCell.INSTANCE;
   }
 
-  public static SunkCell sunk() {
-    return SunkCell.INSTANCE;
+  public static SunkenCell sunken() {
+    return SunkenCell.INSTANCE;
   }
 
   public static WaterCell water() {
@@ -34,15 +36,22 @@ public abstract class Cell extends CellParser {
   }
 
   public static Cell[] variants(){
-    return new Cell[]{fog(), hit(), miss(), sunk(), water(), ShipCell.UNOWNED};
+    return new Cell[]{fog(), hit(), miss(), sunken(), water(), ShipCell.UNOWNED};
   }
 
   // CRUD-R
+
+  public ShotResult takeShot(){
+    return ShotResult.missed();
+  }
+
   @Override
   public String toString() {
     return String.valueOf(this.symbol);
   }
 }
+
+// Subclasses
 
 final class FogCell extends Cell {
   // Singleton instance
@@ -74,22 +83,12 @@ final class MissCell extends Cell {
   }
 }
 
-final class SunkCell extends Cell {
-  // Singleton instance
-  public static final SunkCell INSTANCE = new SunkCell();
-
-  // Private constructor to prevent external instantiation
-  private SunkCell() {
-    super('X');
-  }
-}
-
 final class WaterCell extends Cell {
   // Singleton instance
   public static final WaterCell INSTANCE = new WaterCell();
 
   // Private constructor to prevent external instantiation
   private WaterCell() {
-    super('≈');
+    super('~');
   }
 }

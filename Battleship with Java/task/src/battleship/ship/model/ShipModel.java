@@ -1,4 +1,4 @@
-package battleship.ship;
+package battleship.ship.model;
 
 import java.util.Arrays;
 import java.util.Collections;

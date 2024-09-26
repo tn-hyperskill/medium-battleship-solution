@@ -1,8 +1,9 @@
-package battleship.board.exception;
+package battleship.ship.model;
 
-import battleship.ship.ShipModel;
+import battleship.board.exception.ShipPlacementException;
 
-public class ShipModelInconsistentWithLayoutException extends ShipPlacementException {
+public class ShipModelInconsistentWithLayoutException extends
+    ShipPlacementException {
 
   private final ShipModel model;
 

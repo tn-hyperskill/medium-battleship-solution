@@ -1,8 +1,9 @@
 package battleship.ship;
 
-import battleship.board.exception.ShipModelInconsistentWithLayoutException;
 import battleship.board.locs.BoardCoordinates;
 import battleship.board.locs.LocsInRectIterator;
+import battleship.ship.model.ShipModel;
+import battleship.ship.model.ShipModelInconsistentWithLayoutException;
 import battleship.util.Converter;
 import battleship.util.matrix.MatrixCoordinates;
 import java.util.Iterator;
