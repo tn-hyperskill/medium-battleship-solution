@@ -4,6 +4,7 @@ import battleship.board.exception.ShipModelInconsistentWithLayoutException;
 import battleship.board.locs.BoardCoordinates;
 import battleship.board.locs.LocsInRectIterator;
 import battleship.util.Converter;
+import battleship.util.matrix.MatrixCoordinates;
 import java.util.Iterator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -65,7 +66,7 @@ public final class AnchoredShip extends Ship {
   public String displayHitBoxesMatrixCoordsForDbg() {
     return String.format("HitBoxes[ %s ]",
         this.hitBoxesStream()
-            .map(BoardCoordinates::toString)
+            .map(MatrixCoordinates::toString)
             .collect(Collectors.joining(", ")));
   }
 

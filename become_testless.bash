@@ -7,8 +7,8 @@ if [ "$current_branch" != "dev" ]; then
   exit 1
 fi
 
-# Remove the 'testless_dev' branch if it exists
-git branch -D testless_dev || echo "No 'testless_dev' branch to remove."
+# Remove the 'testless' branch if it exists
+git branch -D testless || echo "No 'testless' branch to remove."
 
 # Pull the latest changes from the remote
 git pull || exit 1

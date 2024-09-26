@@ -1,6 +1,9 @@
 package battleship.board.locs;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import battleship.util.matrix.exceptions.ColIndexOutOfMatrixBounds;
+import battleship.util.matrix.exceptions.RowIndexOutOfMatrixBounds;
 import org.junit.jupiter.api.*;
 
 public class BoardCoordinatesBuilderTest {
@@ -29,13 +32,13 @@ public class BoardCoordinatesBuilderTest {
   @Test
   void rowThrowsExceptionForInvalidRowIndex() {
     BoardCoordinatesBuilder builder = new BoardCoordinatesBuilder();
-    assertThrows(IllegalArgumentException.class, () -> builder.row(100));
+    assertThrows(RowIndexOutOfMatrixBounds.class, () -> builder.row(100));
   }
 
   @Test
   void columnThrowsExceptionForInvalidColumnIndex() {
     BoardCoordinatesBuilder builder = new BoardCoordinatesBuilder();
-    assertThrows(IllegalArgumentException.class, () -> builder.column(100));
+    assertThrows(ColIndexOutOfMatrixBounds.class, () -> builder.column(100));
   }
 
   @Test
