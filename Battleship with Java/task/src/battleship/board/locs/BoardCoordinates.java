@@ -11,6 +11,12 @@ public final class BoardCoordinates extends MatrixCoordinates {
     super(row, column);
   }
 
+  public static BoardCoordinates valueOf(MatrixCoordinates valToValidate){
+    return BoardCoordinates.builder()
+        .row(valToValidate.row).column(valToValidate.col)
+        .build();
+  }
+
   public static BoardCoordinates parse(String humanNotation)
       throws ParseException {
     if (humanNotation.length() != 2 && humanNotation.length() != 3) {
@@ -32,6 +38,7 @@ public final class BoardCoordinates extends MatrixCoordinates {
 
     return new BoardCoordinatesBuilder().row(rowIdx).column(colIdx).build();
   }
+
 
   // CRUD-C: Builder [Lite] Pattern
   @Override
@@ -82,13 +89,24 @@ public final class BoardCoordinates extends MatrixCoordinates {
     return out.build();
   }
 
-  // CRUD-R: Factory methods
+  // CRUD-R: Factory methods of external types
+
   public static BoardCoordinatesBuilder builder() {
     return new BoardCoordinatesBuilder();
   }
 
-  public BoardCoordinatesBuilder toBuilder() {
+  @Override public BoardCoordinatesBuilder toBuilder() {
     return builder().row(this.row).column(this.col);
+  }
+
+  /**
+   * Converts to direct superclass,
+   *  cutting of all the subclass-specific properties.
+   */
+  public MatrixCoordinates sliceObj() {
+    return MatrixCoordinates.builder()
+        .column(this.col).row(this.row)
+        .build();
   }
 
   // CRUD-R: Properties

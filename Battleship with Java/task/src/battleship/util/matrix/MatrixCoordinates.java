@@ -1,5 +1,7 @@
 package battleship.util.matrix;
 
+import battleship.board.locs.BoardCoordinatesBuilder;
+
 public class MatrixCoordinates {
 
   // Instance fields
@@ -29,6 +31,10 @@ public class MatrixCoordinates {
   @Override public boolean equals(Object rhs) {
     return (rhs instanceof MatrixCoordinates brother) && (this.row == brother.row)
         && (this.col == brother.col);
+  }
+
+  public MatrixCoordinatesBuilder toBuilder() {
+    return builder().row(this.row).column(this.col);
   }
 
   @Override public int hashCode() {

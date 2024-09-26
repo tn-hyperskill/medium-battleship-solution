@@ -8,6 +8,11 @@ import java.util.Optional;
 import java.util.function.Function;
 
 public class BoardCoordinatesBuilder extends MatrixCoordinatesBuilder {
+
+  // CRUD-C
+  public BoardCoordinatesBuilder() {
+  }
+
   // CRUD-R: Factory methods
   @Override
   public BoardCoordinates build() {
@@ -18,7 +23,7 @@ public class BoardCoordinatesBuilder extends MatrixCoordinatesBuilder {
   // CRUD-U: Setters
   @Override
   public BoardCoordinatesBuilder row(int rowIndex) {
-    if (!Board.ROW_ENUMERATOR.hasIdx(rowIndex)){
+    if (!Board.ROW_ENUMERATOR.hasIdx(rowIndex)) {
       throw new RowIndexOutOfMatrixBounds(rowIndex);
     }
     this.row = rowIndex;
@@ -27,7 +32,7 @@ public class BoardCoordinatesBuilder extends MatrixCoordinatesBuilder {
 
   @Override
   public BoardCoordinatesBuilder column(int columnIndex) {
-    if (!Board.COL_ENUMERATOR.hasIdx(columnIndex)){
+    if (!Board.COL_ENUMERATOR.hasIdx(columnIndex)) {
       throw new ColIndexOutOfMatrixBounds(columnIndex);
     }
     this.col = columnIndex;
@@ -37,27 +42,31 @@ public class BoardCoordinatesBuilder extends MatrixCoordinatesBuilder {
   // CRUD-U: Transformers
   @Override
   public BoardCoordinatesBuilder mapRow(
-      Function<Optional<Integer>, Integer> mapper){
+      Function<Optional<Integer>, Integer> mapper) {
     return this.row(mapper.apply(this.row()));
   }
+
   @Override
-  public BoardCoordinatesBuilder mapColumn(Function<Optional<Integer>, Integer> mapper){
+  public BoardCoordinatesBuilder mapColumn(
+      Function<Optional<Integer>, Integer> mapper) {
     return this.column(mapper.apply(this.column()));
   }
 
   public BoardCoordinatesBuilder tryMapRow(
-      Function<Optional<Integer>, Integer> mapper){
-    try{
+      Function<Optional<Integer>, Integer> mapper) {
+    try {
       this.mapRow(mapper);
-    }catch (RowIndexOutOfMatrixBounds $){
+    } catch (RowIndexOutOfMatrixBounds $) {
       // Silencing error.
     }
     return this;
   }
-  public BoardCoordinatesBuilder tryMapColumn(Function<Optional<Integer>, Integer> mapper){
-    try{
+
+  public BoardCoordinatesBuilder tryMapColumn(
+      Function<Optional<Integer>, Integer> mapper) {
+    try {
       this.mapColumn(mapper);
-    }catch (ColIndexOutOfMatrixBounds $){
+    } catch (ColIndexOutOfMatrixBounds $) {
       // Silencing error.
     }
     return this;
