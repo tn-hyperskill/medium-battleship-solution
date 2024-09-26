@@ -10,7 +10,6 @@ import battleship.ship.shot.ShotResult;
 import battleship.ship.shot.ShotSunk;
 import java.util.HashSet;
 import java.util.Set;
-import jdk.jshell.spi.ExecutionControl.NotImplementedException;
 
 /**
  * <h6>Protagonist's Board</h6>
@@ -30,7 +29,14 @@ public final class ProtagoBoard extends Board {
     super(Cell.water());
   }
 
+  // CRUD-R
+
+  public boolean hasAliveShips(){
+    return !this.aliveShips.isEmpty();
+  }
+
   // CRUD-U
+
   public void emplaceShip(AnchoredShip incomingShip)
       throws EmplacingShipOnCtrlZoneException {
     // Check if the incomingShip can be placed

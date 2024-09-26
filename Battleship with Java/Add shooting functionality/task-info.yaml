@@ -126,6 +126,15 @@ files:
   - name: src/battleship/ship/shot/ShotDamaged.java
     visible: true
     learner_created: true
+  - name: src/battleship/ship/shot/ShotMissed.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/ship/shot/ShotHit.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/cell/HitCell.java
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/35306#comment
 status: Unchecked
 record: -1

@@ -1,15 +1,15 @@
 package battleship.ship.shot;
 
-import battleship.cell.Cell;
 import battleship.ship.Ship;
 
-public class ShotDamaged extends ShotResult {
+public class ShotDamaged extends ShotHit {
 
   private final Ship victim;
 
   // CRUD-C
 
   public ShotDamaged(Ship victim) {
+    super();
     this.victim = victim;
   }
 
@@ -17,9 +17,5 @@ public class ShotDamaged extends ShotResult {
 
   public final Ship victim() {
     return this.victim;
-  }
-
-  @Override public Cell transformedCell() {
-    return Cell.sunken();
   }
 }

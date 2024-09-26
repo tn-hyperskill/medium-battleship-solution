@@ -2,7 +2,8 @@ package battleship.cell;
 
 import battleship.ship.shot.ShotResult;
 
-public abstract class Cell extends CellParser {
+public abstract class Cell {
+
   // Instance field
   public final char symbol;
 
@@ -35,13 +36,14 @@ public abstract class Cell extends CellParser {
     this.symbol = symbol;
   }
 
-  public static Cell[] variants(){
-    return new Cell[]{fog(), hit(), miss(), sunken(), water(), ShipCell.UNOWNED};
+  public static Cell[] variants() {
+    return new Cell[]{fog(), hit(), miss(), sunken(), water(),
+        ShipCell.UNOWNED};
   }
 
   // CRUD-R
 
-  public ShotResult takeShot(){
+  public ShotResult takeShot() {
     return ShotResult.missed();
   }
 
@@ -53,27 +55,8 @@ public abstract class Cell extends CellParser {
 
 // Subclasses
 
-final class FogCell extends Cell {
-  // Singleton instance
-  public static final FogCell INSTANCE = new FogCell();
-
-  // Private constructor to prevent external instantiation
-  private FogCell() {
-    super('~');
-  }
-}
-
-final class HitCell extends Cell {
-  // Singleton instance
-  public static final HitCell INSTANCE = new HitCell();
-
-  // Private constructor to prevent external instantiation
-  private HitCell() {
-    super('X');
-  }
-}
-
 final class MissCell extends Cell {
+
   // Singleton instance
   public static final MissCell INSTANCE = new MissCell();
 
@@ -83,7 +66,19 @@ final class MissCell extends Cell {
   }
 }
 
+final class FogCell extends Cell {
+
+  // Singleton instance
+  public static final FogCell INSTANCE = new FogCell();
+
+  // Private constructor to prevent external instantiation
+  private FogCell() {
+    super('~');
+  }
+}
+
 final class WaterCell extends Cell {
+
   // Singleton instance
   public static final WaterCell INSTANCE = new WaterCell();
 

@@ -2,11 +2,13 @@ package battleship.app;
 
 import static battleship.app.DepMgr.DEP_MGR;
 
-import battleship.board.locs.BoardCoordinates;
+import battleship.board.AntagoBoard;
 import battleship.board.ProtagoBoard;
 import battleship.board.exception.ShipPlacementException;
+import battleship.board.locs.BoardCoordinates;
 import battleship.ship.AnchoredShip;
 import battleship.ship.model.ShipModel;
+import java.text.ParseException;
 
 public final class App {
 
@@ -41,10 +43,30 @@ public final class App {
     System.out.println(protagoBoard);
 
     System.out.println("The game starts!");
-    for (;;){
+    var antagoBoard = AntagoBoard.antagonizing(protagoBoard);
+    {
       System.out.println(protagoBoard);
       System.out.println("Take a shot!");
+
+      while (true) {
+        try {
+          final BoardCoordinates coords =
+              BoardCoordinates.parse(input.nextLine());
+          var shotRes = antagoBoard.shootAt(coords);
+          System.out.println(protagoBoard);
+          System.out.println(shotRes.msgForUser());
+
+          break;
+//          if (!protagoBoard.hasAliveShips()) {
+//            break;
+//          }
+        } catch (ParseException $) {
+          System.out.println(
+              "Error! You entered the wrong coordinates! Try again:");
+        }
+      }
     }
+
   }
 
   private static void printShipConstructionErr() {

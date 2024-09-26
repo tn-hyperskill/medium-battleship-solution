@@ -1,8 +1,6 @@
 package battleship.cell;
 
-import battleship.ship.shot.ShotResult;
-
-final class SunkenCell extends Cell {
+final class SunkenCell extends HitCell {
 
   // Singleton instance
 
@@ -14,9 +12,4 @@ final class SunkenCell extends Cell {
     super('X');
   }
 
-  // CRUD-R
-
-  @Override public ShotResult takeShot(){
-    return ShotResult.rehit();
-  }
 }
