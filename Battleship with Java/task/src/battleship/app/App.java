@@ -45,7 +45,7 @@ public final class App {
     System.out.println("The game starts!");
     var antagoBoard = AntagoBoard.antagonizing(protagoBoard);
     {
-      System.out.println(protagoBoard);
+      System.out.println(antagoBoard);
       System.out.println("Take a shot!");
 
       while (true) {
@@ -53,8 +53,9 @@ public final class App {
           final BoardCoordinates coords =
               BoardCoordinates.parse(input.nextLine());
           var shotRes = antagoBoard.shootAt(coords);
-          System.out.println(protagoBoard);
+          System.out.println(antagoBoard);
           System.out.println(shotRes.msgForUser());
+          System.out.println(protagoBoard);
 
           break;
 //          if (!protagoBoard.hasAliveShips()) {
