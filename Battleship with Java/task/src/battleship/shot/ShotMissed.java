@@ -18,7 +18,7 @@ public final class ShotMissed extends ShotResult {
   }
 
   @Override public String msgForUser() {
-    return "You missed! Try again:";
+    return "You missed!";
   }
 
 

@@ -9,9 +9,6 @@ files:
   - name: src/battleship/board/ProtagoBoard.java
     visible: true
     learner_created: true
-  - name: src/battleship/board/BoardTest.java
-    visible: true
-    learner_created: true
   - name: src/battleship/app/DepMgr.java
     visible: true
     learner_created: true
@@ -51,16 +48,10 @@ files:
   - name: src/battleship/board/locs/BoardCoordinates.java
     visible: true
     learner_created: true
-  - name: src/battleship/util/matrix/MatrixCoordinatesBuilderTest.java
-    visible: true
-    learner_created: true
   - name: src/battleship/board/locs/BoardCoordinatesBuilder.java
     visible: true
     learner_created: true
   - name: src/battleship/ship/model/ShipModelInconsistentWithLayoutException.java
-    visible: true
-    learner_created: true
-  - name: src/battleship/board/locs/BoardCoordinatesBuilderTest.java
     visible: true
     learner_created: true
   - name: src/battleship/ship/model/ShipModel.java
@@ -69,16 +60,10 @@ files:
   - name: src/battleship/ship/model/ShipSize.java
     visible: true
     learner_created: true
-  - name: src/battleship/ship/model/ShipSizeTest.java
-    visible: true
-    learner_created: true
   - name: src/battleship/cell/Cell.java
     visible: true
     learner_created: true
   - name: src/battleship/util/matrix/MatrixCoordinatesBuilder.java
-    visible: true
-    learner_created: true
-  - name: src/battleship/util/ImmutBiIdxTableTest.java
     visible: true
     learner_created: true
   - name: src/battleship/util/Converter.java
@@ -105,15 +90,6 @@ files:
   - name: src/battleship/cell/SunkenCell.java
     visible: true
     learner_created: true
-  - name: src/battleship/util/matrix/MatrixCoordinatesTest.java
-    visible: true
-    learner_created: true
-  - name: src/battleship/util/matrix/MatrixTest.java
-    visible: true
-    learner_created: true
-  - name: src/battleship/board/locs/BoardCoordinatesTest.java
-    visible: true
-    learner_created: true
   - name: src/battleship/ship/Ship.java
     visible: true
     learner_created: true
@@ -129,9 +105,9 @@ files:
   - name: src/battleship/util/matrix/exceptions/IndexOutOfMatrixBounds.java
     visible: true
     learner_created: true
-  - name: src/battleship/ship/AnchoredShipTest.java
-    visible: true
-    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/35308#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Fri, 27 Sep 2024 09:44:44 UTC"
+record: 5

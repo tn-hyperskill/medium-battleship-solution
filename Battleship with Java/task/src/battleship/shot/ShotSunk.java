@@ -9,6 +9,6 @@ public class ShotSunk extends ShotDamaged {
 
   @Override
   public String msgForUser(){
-    return "You sank a ship! Specify a new target:";
+    return "You sank a ship!";
   }
 }

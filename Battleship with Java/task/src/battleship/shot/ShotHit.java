@@ -18,6 +18,6 @@ public class ShotHit extends ShotResult {
   }
 
   @Override public String msgForUser() {
-    return "You hit a ship! Try again:";
+    return "You hit a ship!";
   }
 }
