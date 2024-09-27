@@ -4,7 +4,7 @@ options:
   - text: '!ExcellentMethod'
   - text: '@ExcellentMethod'
   - text: +ExcellentMethod
-  - text: '#ExcellentMethod'
+  - text: "#ExcellentMethod"
   - text: '&lt;ExcellentMethod&gt;'
 files:
   - name: src/Task.java
