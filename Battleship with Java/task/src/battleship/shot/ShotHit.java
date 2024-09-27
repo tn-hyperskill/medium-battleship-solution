@@ -1,4 +1,4 @@
-package battleship.ship.shot;
+package battleship.shot;
 
 import battleship.cell.Cell;
 
@@ -18,6 +18,6 @@ public class ShotHit extends ShotResult {
   }
 
   @Override public String msgForUser() {
-    return "You hit a ship!";
+    return "You hit a ship! Try again:";
   }
 }

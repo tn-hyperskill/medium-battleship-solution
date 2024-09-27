@@ -2,7 +2,7 @@ package battleship.board;
 
 import battleship.board.locs.BoardCoordinates;
 import battleship.cell.Cell;
-import battleship.ship.shot.ShotResult;
+import battleship.shot.ShotResult;
 
 /**
  * <h6>Antagonist's Board</h6>

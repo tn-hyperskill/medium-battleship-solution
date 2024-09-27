@@ -1,4 +1,4 @@
-package battleship.ship.shot;
+package battleship.shot;
 
 import battleship.cell.Cell;
 
@@ -18,7 +18,7 @@ public final class ShotMissed extends ShotResult {
   }
 
   @Override public String msgForUser() {
-    return "You missed!";
+    return "You missed! Try again:";
   }
 
 

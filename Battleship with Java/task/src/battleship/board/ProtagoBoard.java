@@ -5,9 +5,8 @@ import battleship.board.locs.BoardCoordinates;
 import battleship.cell.Cell;
 import battleship.cell.ShipCell;
 import battleship.ship.AnchoredShip;
-import battleship.ship.shot.ShotDamaged;
-import battleship.ship.shot.ShotResult;
-import battleship.ship.shot.ShotSunk;
+import battleship.shot.ShotResult;
+import battleship.shot.ShotSunk;
 import java.util.HashSet;
 import java.util.Set;
 

@@ -2,7 +2,7 @@ package battleship.ship;
 
 import battleship.ship.model.ShipModel;
 import battleship.ship.model.ShipSize;
-import battleship.ship.shot.ShotResult;
+import battleship.shot.ShotResult;
 
 public class Ship {
 

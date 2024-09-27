@@ -40,11 +40,12 @@ public final class App {
         }
       }
     }
-    System.out.println(protagoBoard);
 
+    System.out.println(protagoBoard);
     System.out.println("The game starts!");
+
     var antagoBoard = AntagoBoard.antagonizing(protagoBoard);
-    {
+    for (var gameFinished = false; !gameFinished;){
       System.out.println(antagoBoard);
       System.out.println("Take a shot!");
 
@@ -54,8 +55,12 @@ public final class App {
               BoardCoordinates.parse(input.nextLine());
           var shotRes = antagoBoard.shootAt(coords);
           System.out.println(antagoBoard);
-          System.out.println(shotRes.msgForUser());
-          System.out.println(protagoBoard);
+          if (protagoBoard.hasAliveShips()){
+            System.out.println(shotRes.msgForUser());
+          }else {
+            gameFinished = true;
+            System.out.println("You sank the last ship. You won. Congratulations!");
+          }
 
           break;
 //          if (!protagoBoard.hasAliveShips()) {

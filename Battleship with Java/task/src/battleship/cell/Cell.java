@@ -1,6 +1,6 @@
 package battleship.cell;
 
-import battleship.ship.shot.ShotResult;
+import battleship.shot.ShotResult;
 
 public abstract class Cell {
 

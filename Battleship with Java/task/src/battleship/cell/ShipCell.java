@@ -1,7 +1,7 @@
 package battleship.cell;
 
 import battleship.ship.Ship;
-import battleship.ship.shot.ShotResult;
+import battleship.shot.ShotResult;
 
 public final class ShipCell extends Cell {
   public static final char SYMBOL = 'O';

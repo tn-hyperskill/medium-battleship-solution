@@ -1,4 +1,4 @@
-package battleship.ship.shot;
+package battleship.shot;
 
 import battleship.ship.Ship;
 
