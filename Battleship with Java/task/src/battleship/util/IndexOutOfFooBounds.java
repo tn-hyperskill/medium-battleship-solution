@@ -1,6 +1,7 @@
 package battleship.util;
 
 public class IndexOutOfFooBounds extends IndexOutOfBoundsException {
+
   public final int index;
   public final String fooName, attributeName;
 

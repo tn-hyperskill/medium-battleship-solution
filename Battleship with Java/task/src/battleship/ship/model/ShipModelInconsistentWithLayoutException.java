@@ -2,17 +2,18 @@ package battleship.ship.model;
 
 import battleship.board.exception.ShipPlacementException;
 
-public class ShipModelInconsistentWithLayoutException extends
+public final class ShipModelInconsistentWithLayoutException extends
     ShipPlacementException {
 
   private final ShipModel model;
 
-  public ShipModelInconsistentWithLayoutException(ShipModel model, int expectedVolume) {
+  public ShipModelInconsistentWithLayoutException(ShipModel model,
+      int expectedVolume) {
     super(String.format("""
-            Provided ship model is inconsistent \
-            with the hit boxes implied by layout.
-            `model.volume()` = %s;  `hit box (count) volume` = %s;
-            """, model.volume(), expectedVolume));
+        Provided ship model is inconsistent \
+        with the hit boxes implied by layout.
+        `model.volume()` = %s;  `hit box (count) volume` = %s;
+        """, model.volume(), expectedVolume));
     this.model = model;
   }
 

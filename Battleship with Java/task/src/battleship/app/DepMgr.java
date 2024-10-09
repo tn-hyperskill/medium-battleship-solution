@@ -3,30 +3,29 @@ package battleship.app;
 import battleship.board.AntagoBoard;
 import battleship.board.ProtagoBoard;
 import java.io.Closeable;
-import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public final class DepMgr implements Closeable {
 
   // Singleton
-  public static final DepMgr DEP_MGR = new DepMgr();
 
-  static {
-    Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-      try {
-        DEP_MGR.close();
-      } catch (IOException e) {
-        throw new RuntimeException(e);
-      }
-    }));
-  }
+  public static final DepMgr DEP_MGR = DepMgr.constructStaticInstance();
 
   // Instance fields
+
   private final Scanner input = new Scanner(System.in);
   private boolean gameFinished = false;
   private final Player[] players;
 
   // CRUD-C: Constructors
+
+  protected static DepMgr constructStaticInstance() {
+    var instance = new DepMgr();
+    Runtime.getRuntime().addShutdownHook(new Thread(instance::close));
+    return instance;
+  }
+
   protected DepMgr() {
     var protagoBoard1 = ProtagoBoard.empty();
     var protagoBoard2 = ProtagoBoard.empty();
@@ -47,8 +46,8 @@ public final class DepMgr implements Closeable {
     return this.gameFinished;
   }
 
-  public Player[] players() {
-    return this.players;
+  public List<Player> players() {
+    return List.of(this.players);
   }
 
   // CRUD-U: Setters
@@ -59,7 +58,7 @@ public final class DepMgr implements Closeable {
 
   // CRUD-D: Cleanup-ers
 
-  @Override public void close() throws IOException {
+  @Override public void close() {
     this.input.close();
   }
 }

@@ -25,13 +25,13 @@ public final class AntagoBoard extends Board {
 
   // CRUD-R
 
-  public boolean doesOpponentHaveAliveShips(){
+  public boolean doesOpponentHaveAliveShips() {
     return this.antagonized.hasAliveShips();
   }
 
   // CRUD-U
 
-  public ShotResult shootAt(final BoardCoordinates coordinates){
+  public ShotResult shootAt(final BoardCoordinates coordinates) {
     final var shotResult = this.antagonized.takeShotAt(coordinates);
 
     this.cellsMtx.setValAt(coordinates, shotResult.transformedCell());

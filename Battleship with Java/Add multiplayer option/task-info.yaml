@@ -108,10 +108,34 @@ files:
   - name: src/battleship/app/Player.java
     visible: true
     learner_created: true
+  - name: src/battleship/board/locs/BoardCoordinatesTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/board/locs/BoardCoordinatesBuilderTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/ImmutBiIdxTableTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/board/locs/BoardCoordinatesParser.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/matrix/MatrixCoordinatesBuilderTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/board/BoardTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/matrix/MatrixTest.java
+    visible: true
+    learner_created: true
+  - name: src/battleship/util/matrix/MatrixCoordinatesTest.java
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/35309#comment
 status: Solved
 feedback:
   message: Well done! You've finished the project. Select a new project on <a href="https://hyperskill.org/projects">Hyperskill</a>
     to continue learning.
-  time: "Fri, 04 Oct 2024 19:35:11 UTC"
+  time: "Wed, 09 Oct 2024 14:18:35 UTC"
 record: 6

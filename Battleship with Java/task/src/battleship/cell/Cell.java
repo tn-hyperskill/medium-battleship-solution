@@ -2,6 +2,7 @@ package battleship.cell;
 
 import battleship.shot.ShotResult;
 
+@SuppressWarnings({"PMD.AbstractClassWithoutAbstractMethod", "SameReturnValue"})
 public abstract class Cell {
 
   // Instance field
@@ -9,23 +10,24 @@ public abstract class Cell {
 
   // CRUD-C: Fabrication methods for subclass singletons
 
-  public static FogCell fog() {
+  public static Cell fog() {
     return FogCell.INSTANCE;
   }
 
-  public static HitCell hit() {
+  @SuppressWarnings("unused")
+  public static Cell hit() {
     return HitCell.INSTANCE;
   }
 
-  public static MissCell miss() {
+  public static Cell miss() {
     return MissCell.INSTANCE;
   }
 
-  public static SunkenCell sunken() {
+  public static Cell sunken() {
     return SunkenCell.INSTANCE;
   }
 
-  public static WaterCell water() {
+  public static Cell water() {
     return WaterCell.INSTANCE;
   }
 
@@ -36,19 +38,25 @@ public abstract class Cell {
     this.symbol = symbol;
   }
 
-  public static Cell[] variants() {
-    return new Cell[]{fog(), hit(), miss(), sunken(), water(),
-        ShipCell.UNOWNED};
-  }
-
   // CRUD-R
 
+  /**
+   * <h6>Take a shot</h6>
+   * <br>
+   * This cell receives a shot (from opponent). Because {@link Cell} is
+   * inherently immutable object, it should be updated by reassignment. The
+   * returned value
+   * <b>indicates whether the cell needs (reassignment) replacement</b> and what
+   * kind of.
+   *
+   * @return the shot result indicating potential need of reassignment.
+   */
   public ShotResult takeShot() {
     return ShotResult.missed();
   }
 
   @Override
-  public String toString() {
+  public final String toString() {
     return String.valueOf(this.symbol);
   }
 }

@@ -7,11 +7,12 @@ import java.text.ParseException;
 public final class BoardCoordinates extends MatrixCoordinates {
 
   // CRUD-C: Common constructors
+
   BoardCoordinates(int row, int column) {
     super(row, column);
   }
 
-  public static BoardCoordinates valueOf(MatrixCoordinates valToValidate){
+  public static BoardCoordinates valueOf(MatrixCoordinates valToValidate) {
     return BoardCoordinates.builder()
         .row(valToValidate.row).column(valToValidate.col)
         .build();
@@ -19,24 +20,7 @@ public final class BoardCoordinates extends MatrixCoordinates {
 
   public static BoardCoordinates parse(String humanNotation)
       throws ParseException {
-    if (humanNotation.length() != 2 && humanNotation.length() != 3) {
-      throw new IllegalArgumentException("string length should equal 2 or 3");
-    }
-
-    final int rowIdx, colIdx;
-    try {
-      rowIdx = Board.ROW_ENUMERATOR.getIdx(humanNotation.charAt(0));
-    } catch (Exception e) {
-      throw (ParseException) new ParseException("", 0).initCause(e);
-    }
-    try {
-      colIdx = Board.COL_ENUMERATOR.getIdx(
-          Integer.parseInt(humanNotation.substring(1)));
-    } catch (Exception e) {
-      throw (ParseException) new ParseException("", 1).initCause(e);
-    }
-
-    return new BoardCoordinatesBuilder().row(rowIdx).column(colIdx).build();
+    return BoardCoordinatesParser.parse(humanNotation);
   }
 
 
@@ -64,7 +48,7 @@ public final class BoardCoordinates extends MatrixCoordinates {
    * @return A new {@code BoardCoordinates} with the decremented row and column
    * values if within board boundaries.
    */
-  public BoardCoordinates saturating_decrement() {
+  public BoardCoordinates saturatingDecrement() {
     var out = this.toBuilder();
     out.tryMapColumn(i -> i.get() - 1)  // Decrement column if valid
         .tryMapRow(i -> i.get() - 1);   // Decrement row if valid
@@ -82,7 +66,7 @@ public final class BoardCoordinates extends MatrixCoordinates {
    * @return A new {@code BoardCoordinates} with the incremented row and column
    * values if within board boundaries.
    */
-  public BoardCoordinates saturating_increment() {
+  public BoardCoordinates saturatingIncrement() {
     var out = this.toBuilder();
     out.tryMapColumn(i -> i.get() + 1)  // Increment column if valid
         .tryMapRow(i -> i.get() + 1);   // Increment row if valid
@@ -100,8 +84,8 @@ public final class BoardCoordinates extends MatrixCoordinates {
   }
 
   /**
-   * Converts to direct superclass,
-   *  cutting of all the subclass-specific properties.
+   * Converts to direct superclass, cutting of all the subclass-specific
+   * properties.
    */
   public MatrixCoordinates sliceObj() {
     return MatrixCoordinates.builder()
@@ -111,8 +95,14 @@ public final class BoardCoordinates extends MatrixCoordinates {
 
   // CRUD-R: Properties
 
+  @Override public boolean equals(Object o) {
+    // `super`s impl. is good, but `checkstyle` wants an override.
+    // It also helps when jumping using "go to definition" editor action.
+    return super.equals(o);
+  }
+
   @Override public int hashCode() {
-    return this.col * Board.HEIGHT() + this.row;
+    return this.col * Board.height() + this.row;
   }
 
   public String displayForUser() {

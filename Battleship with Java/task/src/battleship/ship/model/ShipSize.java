@@ -15,15 +15,16 @@ public enum ShipSize {
         return size;
       }
     }
-    throw new IllegalArgumentException("No ShipSize found for volume: " + volume);
+    throw new IllegalArgumentException(
+        "No ShipSize found for volume: " + volume);
   }
 
-  ShipSize(int volume){
-    if (volume <= 0){
+  ShipSize(int volume) {
+    if (volume <= 0) {
       throw new IllegalArgumentException("""
-        Currently 0 is not a valid volume. \
-        A ship must be at least thin (width >= 1).
-        """
+          Currently 0 is not a valid volume. \
+          A ship must be at least thin (width >= 1).
+          """
       );
     }
     this.volume = volume;

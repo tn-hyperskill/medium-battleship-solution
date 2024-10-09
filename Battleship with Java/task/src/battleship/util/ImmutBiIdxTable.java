@@ -15,9 +15,10 @@ import java.util.stream.Stream;
  * <h6>Immutable Bidirectionally Indexed Table</h6>
  * This is a special case of bidirectional map.
  * <br><br>
- * This bi-map is less abstract,
- * because one of the 2 generic types is known to be {@link Integer}.
- * Thus, type {@link ImmutBiIdxTable}&lt;T&gt; ≈ {@code Bimap<Integer, T>}.
+ * This bi-map is less abstract, because one of the 2 generic types is known to
+ * be {@link Integer}. Thus, type {@link ImmutBiIdxTable}&lt;T&gt; ≈
+ * {@code BiMap<Integer, T>}.
+ *
  * @param <T>
  */
 public final class ImmutBiIdxTable<T> {
@@ -29,15 +30,16 @@ public final class ImmutBiIdxTable<T> {
   // CRUD-C: Factory methods
 
   public static <T> ImmutBiIdxTable<T> fromSeq(final Stream<T> base) {
-    return new ImmutBiIdxTable(base.toList());
+    return new ImmutBiIdxTable<>(base.toList());
   }
 
   public static <T> ImmutBiIdxTable<T> fromSeq(final List<T> base) {
-    return new ImmutBiIdxTable(List.copyOf(base));
+    return new ImmutBiIdxTable<>(List.copyOf(base));
   }
 
+  @SuppressWarnings("PMD.UseVarargs")
   public static <T> ImmutBiIdxTable<T> fromSeq(final T[] base) {
-    return new ImmutBiIdxTable(List.of(base));
+    return new ImmutBiIdxTable<>(List.of(base));
   }
 
   // CRUD-C: Priv. constructors
@@ -54,7 +56,7 @@ public final class ImmutBiIdxTable<T> {
             throw new IllegalArgumentException(String.format(
                 """
                     the provided array contains 2+ `Object.equal` values:
-                    {%s, %s, ...} 
+                    {%s, %s, ...}
                     """,
                 curIdx, oldIdx
             ));
@@ -66,19 +68,21 @@ public final class ImmutBiIdxTable<T> {
   }
 
   // CRUD-R: Properties
-  public boolean hasIdx(final int index){
+  public boolean hasIdx(final int index) {
     return 0 <= index && index < this.table.size();
   }
-  public boolean hasVal(final T value){
+
+  public boolean hasVal(final T value) {
     return this.secondIndexer.containsKey(value);
   }
 
   // CRUD-R: Indexers
 
-  public T getVal(final int index) throws NoSuchElementException{
+  public T getVal(final int index) throws NoSuchElementException {
     return this.tryGetVal(index).orElseThrow(NoSuchElementException::new);
   }
-  public int getIdx(final T value) throws NoSuchElementException{
+
+  public int getIdx(final T value) throws NoSuchElementException {
     return this.tryGetIdx(value).orElseThrow(NoSuchElementException::new);
   }
 
@@ -88,7 +92,7 @@ public final class ImmutBiIdxTable<T> {
   public Optional<T> tryGetVal(final int index) {
     try {
       return Optional.of(this.table.get(index));
-    }catch (IndexOutOfBoundsException e){
+    } catch (IndexOutOfBoundsException e) {
       return Optional.empty();
     }
   }
@@ -98,7 +102,7 @@ public final class ImmutBiIdxTable<T> {
    */
   public OptionalInt tryGetIdx(final T value) {
     Integer index = this.secondIndexer.get(value);
-    return (index == null)? OptionalInt.empty() : OptionalInt.of(index);
+    return (index == null) ? OptionalInt.empty() : OptionalInt.of(index);
   }
 
   // CRUD-R: Getters

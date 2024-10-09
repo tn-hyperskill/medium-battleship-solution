@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 /**
  * <h6>Locations In Rectangle, Iterator</h6>
  */
-public class LocsInRectIterator implements Iterator<BoardCoordinates> {
+public final class LocsInRectIterator implements Iterator<BoardCoordinates> {
 
   // Immutable instance fields
   private final MatrixCoordinates headDest;
@@ -15,10 +15,12 @@ public class LocsInRectIterator implements Iterator<BoardCoordinates> {
   // Mutable instance fields
   private MatrixCoordinates headCords;
 
-  public LocsInRectIterator(BoardCoordinates minCoords, BoardCoordinates maxCoords) {
+  public LocsInRectIterator(BoardCoordinates minCoords,
+      BoardCoordinates maxCoords) {
     this.headCords = minCoords.sliceObj();
     this.savedHeadCol = minCoords.col;
-    this.headDest = maxCoords.sliceObj().cloneWithCol(maxCoords.col + 1);  // Move headDest one past the end
+    this.headDest = maxCoords.sliceObj()
+        .cloneWithCol(maxCoords.col + 1);  // Move headDest one past the end
   }
 
   @Override

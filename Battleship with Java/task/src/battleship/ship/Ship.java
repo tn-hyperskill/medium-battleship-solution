@@ -7,6 +7,7 @@ import battleship.shot.ShotResult;
 public class Ship {
 
   // Instance fields
+
   private final ShipModel model;
   private int hpLeft;
 
@@ -48,20 +49,28 @@ public class Ship {
   // CRUD-R: Misc
 
   @Override
-  public String toString() {
+  public final String toString() {
     return this.model().toString();
   }
 
   // CRUD-U
 
-  public ShotResult takeShot() {
-    this.takeDamage();
-    return this.isDead() ?
-        ShotResult.sunk(this) :
-        ShotResult.damaged(this);
+  /**
+   * <h6>Take a shot</h6>
+   * <br>
+   * Receives a shot (from opponent). Updating the state (HP) to reflect the
+   * damage.
+   *
+   * @return the shot result.
+   */
+  public final ShotResult takeShot() {
+    this.receiveDamage();
+    return this.isDead()
+        ? ShotResult.sunk(this)
+        : ShotResult.damaged(this);
   }
 
-  protected void takeDamage() {
+  protected final void receiveDamage() {
     if (this.isDead()) {
       throw new UnsupportedOperationException(
           """

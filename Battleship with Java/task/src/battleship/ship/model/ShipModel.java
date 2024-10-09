@@ -5,8 +5,9 @@ import java.util.Collections;
 
 public enum ShipModel {
   DESTROYER("Destroyer", ShipSize.TINY), CRUISER("Cruiser", ShipSize.MEDIUM),
-  SUBMARINE("Submarine", ShipSize.MEDIUM), BATTLESHIP("Battleship", ShipSize.BIG),
-  AIRCRAFT_CARRIER("Aircraft Carrier", ShipSize.LARGE),
+  SUBMARINE("Submarine", ShipSize.MEDIUM),
+  BATTLESHIP("Battleship", ShipSize.BIG),
+  AIRCRAFT_CARRIER("Aircraft Carrier", ShipSize.LARGE)
   ;
   // Instance fields
   public final String titleCaseName;
@@ -21,20 +22,20 @@ public enum ShipModel {
 
   // CRUD-R: Properties
 
-  public static ShipModel[] variantsInPlacingOrd(){
+  public static ShipModel[] variantsInPlacingOrd() {
     var variants = values();
     Collections.reverse(Arrays.asList(variants));
     return variants;
   }
 
   @Override
-  public String toString(){
+  public String toString() {
     return this.titleCaseName;
   }
 
   // CRUD-R: Getters
 
-  public int volume(){
+  public int volume() {
     return this.size.volume();
   }
 }

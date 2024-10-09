@@ -7,7 +7,7 @@ import battleship.util.matrix.exceptions.RowIndexOutOfMatrixBounds;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class BoardCoordinatesBuilder extends MatrixCoordinatesBuilder {
+public final class BoardCoordinatesBuilder extends MatrixCoordinatesBuilder {
 
   // CRUD-C
   public BoardCoordinatesBuilder() {

@@ -9,7 +9,7 @@ final class SunkenCell extends HitCell {
   // CRUD-C
 
   private SunkenCell() {
-    super('X');
+    super();
   }
 
 }

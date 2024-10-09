@@ -2,9 +2,16 @@ package battleship;
 
 import battleship.app.App;
 
-public class Main {
+public final class Main {
 
-  public static void main(String[] args) {
+  // CRUD-C
+
+  private Main() {
+  }
+
+  // CRUD-R
+
+  public static void main(final String[] args) {
     App.run(args);
   }
 }

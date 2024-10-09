@@ -7,20 +7,24 @@ import java.util.Iterator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public abstract class Board {
+public class Board {
 
   // Constants
+
+  private static final short DIMENSION_SIZE = 10;
+
   /**
    * <h6>Row Enumeration</h6>
    */
   public static final ImmutBiIdxTable<Integer> COL_ENUMERATOR = ImmutBiIdxTable
-      .fromSeq(IntStream.rangeClosed(1, 10).mapToObj(i -> i));
+      .fromSeq(IntStream.rangeClosed(1, DIMENSION_SIZE).boxed());
   /**
    * <h6>Column Enumeration</h6>
    */
   public static final ImmutBiIdxTable<Character> ROW_ENUMERATOR =
       ImmutBiIdxTable
-          .fromSeq(IntStream.range('A', 'A' + 10).mapToObj(i -> (char) i));
+          .fromSeq(IntStream.range('A', 'A' + DIMENSION_SIZE)
+              .mapToObj(i -> (char) i));
 
   // Instance fields
 
@@ -32,41 +36,33 @@ public abstract class Board {
    * @return construct an empty (foggy) board for unit tests.
    */
   static Board foggy() {
-    return new Board(Cell.fog()){};
+    return new Board(Cell.fog());
   }
 
-  protected Board(Cell defaultCell){
-    this(new Matrix(defaultCell, HEIGHT(), WIDTH()));
+  protected Board(Cell defaultCell) {
+    this(new Matrix<>(defaultCell, height(), width()));
   }
 
   protected Board(Matrix<Cell> cellsMtx) {
     this.cellsMtx = cellsMtx;
-    assert cellsMtx.width() == WIDTH()
-        && cellsMtx.height() == HEIGHT();
+    assert cellsMtx.width() == width()
+        && cellsMtx.height() == height();
   }
 
   // CRUD-R: Getters
 
-  public static int WIDTH() {
+  public static int width() {
     return COL_ENUMERATOR.size();
   }
 
-  public static int HEIGHT() {
+  public static int height() {
     return ROW_ENUMERATOR.size();
-  }
-
-  public int width() {
-    return this.cellsMtx.width();
-  }
-
-  public int height() {
-    return this.cellsMtx.height();
   }
 
   // CRUD-R: Fabrication methods for external types
 
   @Override
-  public String toString() {
+  public final String toString() {
     var out = new StringBuilder(this.drawnIntEnumeration());
 
     Iterator<Character> letterIter = ROW_ENUMERATOR.valIter();
@@ -75,7 +71,7 @@ public abstract class Board {
       out.append(letterIter.next());
       for (int col = 0; col < this.width(); col++) {
         var cell = cellIter.next();
-        out.append(" " + cell);
+        out.append(" ").append(cell);
       }
     }
 

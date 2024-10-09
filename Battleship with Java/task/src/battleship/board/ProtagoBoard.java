@@ -30,7 +30,7 @@ public final class ProtagoBoard extends Board {
 
   // CRUD-R
 
-  public boolean hasAliveShips(){
+  public boolean hasAliveShips() {
     return !this.aliveShips.isEmpty();
   }
 
@@ -50,14 +50,14 @@ public final class ProtagoBoard extends Board {
     incomingShip.hitBoxesStream().forEach(hitBox -> this.cellsMtx.setValAt(
         hitBox, new ShipCell(incomingShip)));
     incomingShip.ctrlZonesStream()
-        .forEach(ctrlZone -> this.ctrlZones.add(ctrlZone));
+        .forEach(this.ctrlZones::add);
   }
 
   public ShotResult takeShotAt(final BoardCoordinates coordinates) {
     final var shotRes = this.cellsMtx.valAt(coordinates).takeShot();
     this.cellsMtx.setValAt(coordinates, shotRes.transformedCell());
 
-    if (shotRes instanceof ShotSunk sunk){
+    if (shotRes instanceof ShotSunk sunk) {
       this.aliveShips.remove(sunk.victim());
     }
 

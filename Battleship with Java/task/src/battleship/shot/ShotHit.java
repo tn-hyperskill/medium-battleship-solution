@@ -14,7 +14,7 @@ public class ShotHit extends ShotResult {
   // CRUD-R
 
   @Override public Cell transformedCell() {
-    return Cell.sunken();
+    return Cell.hit();
   }
 
   @Override public String msgForUser() {

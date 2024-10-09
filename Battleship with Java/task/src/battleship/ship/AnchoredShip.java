@@ -57,13 +57,14 @@ public final class AnchoredShip extends Ship {
     return this.start.mergeToMinimizeCords(this.finish);
   }
 
-  public String displayHitBoxesForDbg() {
+  @SuppressWarnings("unused") public String displayHitBoxesForDbg() {
     return String.format("HitBoxes[ %s ]",
         this.hitBoxesStream()
             .map(BoardCoordinates::displayForUser)
             .collect(Collectors.joining(", ")));
   }
 
+  @SuppressWarnings("unused")
   public String displayHitBoxesMatrixCoordsForDbg() {
     return String.format("HitBoxes[ %s ]",
         this.hitBoxesStream()
@@ -78,8 +79,8 @@ public final class AnchoredShip extends Ship {
   }
 
   public Iterator<BoardCoordinates> ctrlZonesIter() {
-    return new LocsInRectIterator(this.minCoords().saturating_decrement(),
-        this.maxCoords().saturating_increment());
+    return new LocsInRectIterator(this.minCoords().saturatingDecrement(),
+        this.maxCoords().saturatingIncrement());
   }
 
   public Stream<BoardCoordinates> hitBoxesStream() {

@@ -3,15 +3,22 @@ package battleship.app;
 import static battleship.app.DepMgr.DEP_MGR;
 
 public final class App {
+  // CRUD-C
 
-  public static void run(String[] _args) {
+  private App() {
+  }
+
+  // CRUD-U
+
+  @SuppressWarnings("PMD.UseVarargs")
+  public static void run(String[] ignored_args) {
     App.playersPlaceAllShips();
     App.playersExchangeFire();
   }
 
   private static void playersPlaceAllShips() {
     for (var player : DEP_MGR.players()) {
-      player.emplaceShips();
+      player.emplaceAllShips();
       player.passMove();
     }
   }
@@ -20,7 +27,7 @@ public final class App {
     while (true) {
       for (var player : DEP_MGR.players()) {
         player.doShootingTurn();
-        if (DEP_MGR.isGameFinished()){
+        if (DEP_MGR.isGameFinished()) {
           return;
         }
       }

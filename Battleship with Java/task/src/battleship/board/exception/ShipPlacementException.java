@@ -1,6 +1,6 @@
 package battleship.board.exception;
 
-public abstract class ShipPlacementException extends RuntimeException{
+public abstract class ShipPlacementException extends RuntimeException {
 
   public ShipPlacementException(String message) {
     super(message);

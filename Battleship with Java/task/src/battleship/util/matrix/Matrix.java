@@ -1,7 +1,6 @@
 package battleship.util.matrix;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -16,21 +15,12 @@ public final class Matrix<T> {
 
   public Matrix(T defaultVal, int height, int width) {
     this(
-        new ArrayList<T>(Collections.nCopies(width * height, defaultVal)),
+        new ArrayList<>(Collections.nCopies(width * height, defaultVal)),
         height, width
     );
   }
 
-  /**
-   * Constructor good for unit tests.
-   */
-  Matrix(T[] base, int height, int width) {
-    this(Arrays.asList(base), height, width);
-
-    assert base.length == width * height;
-  }
-
-  private Matrix(List<T> cells, int height, int width) {
+  Matrix(List<T> cells, int height, int width) {
     this.cells = cells;
     this.width = width;
     this.height = height;

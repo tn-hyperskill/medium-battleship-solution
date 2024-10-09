@@ -17,9 +17,9 @@ public final class Player {
 
   // Instance fields
 
-  public final int id;
-  public final ProtagoBoard protagoBoard;
-  public final AntagoBoard antagoBoard;
+  private final int id;
+  private final ProtagoBoard protagoBoard;
+  private final AntagoBoard antagoBoard;
 
   // CRUD-C: Constructors
 
@@ -51,12 +51,12 @@ public final class Player {
 
   public void doShootingTurn() {
     this.seeBoards();
-    System.out.printf("%s, it's your turn:\n", this);
+    System.out.printf("%s, it's your turn:\n", this.reprForUser());
     var shotRes = this.shoot();
     System.out.println(shotRes.msgForUser());
-    if (this.antagoBoard.doesOpponentHaveAliveShips()){
+    if (this.antagoBoard.doesOpponentHaveAliveShips()) {
       passMove();
-    }else {
+    } else {
       System.out.println("You sank the last ship. You won. Congratulations!");
       DEP_MGR.markGameAsFinished();
     }
@@ -64,7 +64,7 @@ public final class Player {
 
   // CRUD-U: Interactions with user
 
-  public void emplaceShips() {
+  public void emplaceAllShips() {
     // Pull dependencies
     var input = DEP_MGR.input();
     // The interaction
@@ -78,7 +78,7 @@ public final class Player {
           shipModel, shipModel.volume());
       while (true) {
         try {
-          // Draw input
+          // Draw input from user.
           var coordinates = input.nextLine().split(" ");
           // Input processing
           var start = BoardCoordinates.parse(coordinates[0]);
@@ -88,8 +88,10 @@ public final class Player {
           break;
         } catch (ShipPlacementException e) {
           System.out.println(e.msgForUser() + " Try again:");
-        } catch (Exception e) {
-          e.printStackTrace();
+        } catch (RuntimeException e) {
+          System.out.println("Caught an unhandled error. Try again:");
+        } catch (ParseException e) {
+          System.out.println("Caught an unhandled parsing error. Try again:");
         }
       }
       System.out.println(this.protagoBoard);

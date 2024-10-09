@@ -9,12 +9,8 @@ class HitCell extends Cell {
 
   // CRUD-C
 
-  private HitCell() {
-    this('X');
-  }
-
-  protected HitCell(char symbol) {
-    super(symbol);
+  protected HitCell() {
+    super('X');
   }
 
   // CRUD-R
